@@ -16,7 +16,7 @@ var w = http.createServer(content);
 w.listen(8000);
 ```
 
-###node hello.js
+### node hello.js
 
 
 ## docker 
@@ -29,4 +29,60 @@ COPY hello.js .
 CMD node hello.js
 ```
 
+### Dockerfile
+https://hub.docker.com/
 
+### Docker Container Run
+```bash
+#docker build -t tmkube/hello .
+-t : 레파지토리/이미지명:버전
+
+# docker images
+# docker run -d -p 8100:8000 tmkube/hello
+-d : 백그라운드 모드
+-p : 포트변경
+
+# docker ps
+# docker exec -it c403442e8a59 /bin/bash
+```
+
+
+### Docker Image Push
+```bash
+# docker login
+# docker push tmkube/hello
+```
+
+## Kubernetes 
+
+### Pod
+```bash
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-pod
+  labels:
+    app: hello
+spec:
+  containers:
+  - name: hello-container
+    image: tmkube/hello
+    ports:
+    - containerPort: 8000
+```
+
+### Service
+```bash
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-svc
+spec:
+  selector:
+    app: hello
+  ports:
+    - port: 8200
+      targetPort: 8000
+  externalIPs:
+  - 192.168.0.30
+```
