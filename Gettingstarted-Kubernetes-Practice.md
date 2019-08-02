@@ -2,10 +2,9 @@
 
 ### 
 
-### Use label selectors to schedule Pods
+### linux
 
-<details>
-<p>
+
 
 ```bash
 $ kubectl label nodes node-1 size=Large
@@ -22,5 +21,4 @@ spec:
     size: Large
 
 ```
-</p>
-</details>
+
