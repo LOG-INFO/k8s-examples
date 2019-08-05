@@ -6,7 +6,7 @@
 ## linux
 
 ### hello.js
-```bash
+```javascript
 var http = require('http');
 var content = function(req, resp) {
  resp.end("Hello Kubernetes!" + "\n");
@@ -56,7 +56,7 @@ docker push tmkube/hello
 ## Kubernetes 
 
 ### Pod
-```bash
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
