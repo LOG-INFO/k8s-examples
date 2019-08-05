@@ -15,9 +15,9 @@ var content = function(req, resp) {
 var w = http.createServer(content);
 w.listen(8000);
 ```
-
-### node hello.js
-
+```sh
+node hello.js
+```
 
 ## Docker 
 
