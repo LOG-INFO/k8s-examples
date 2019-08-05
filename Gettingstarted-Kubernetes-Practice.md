@@ -33,7 +33,7 @@ CMD node hello.js
 https://hub.docker.com/
 
 ### Docker Container Run
-```bash
+```shell
 #docker build -t tmkube/hello .
 -t : 레파지토리/이미지명:버전
 
@@ -48,7 +48,7 @@ https://hub.docker.com/
 
 
 ### Docker Image Push
-```bash
+```shell
 # docker login
 # docker push tmkube/hello
 ```
