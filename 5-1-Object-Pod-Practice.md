@@ -107,5 +107,4 @@ spec:
         memory: 2Gi
       limits:
         memory: 3Gi
-
 ```
