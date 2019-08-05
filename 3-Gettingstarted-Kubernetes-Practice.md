@@ -19,6 +19,7 @@ w.listen(8000);
 node hello.js
 ```
 
+
 ## Docker 
 
 ### Dockerfile
@@ -52,6 +53,7 @@ docker exec -it c403442e8a59 /bin/bash
 docker login
 docker push tmkube/hello
 ```
+
 
 ## Kubernetes 
 
