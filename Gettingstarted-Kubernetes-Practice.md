@@ -3,7 +3,7 @@
 
 # 3. Gettingstarted-Kubernetes-Practice
 
-## linux
+## Linux
 
 ### hello.js
 ```javascript
@@ -19,7 +19,7 @@ w.listen(8000);
 ### node hello.js
 
 
-## docker 
+## Docker 
 
 ### Dockerfile
 ```sh
