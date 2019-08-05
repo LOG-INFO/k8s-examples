@@ -22,7 +22,7 @@ w.listen(8000);
 ## docker 
 
 ### Dockerfile
-```bash
+```sh
 FROM node:slim
 EXPOSE 8000
 COPY hello.js .
@@ -33,24 +33,24 @@ CMD node hello.js
 https://hub.docker.com/
 
 ### Docker Container Run
-```shell
-#docker build -t tmkube/hello .
+```sh
+docker build -t tmkube/hello .
 -t : 레파지토리/이미지명:버전
 
-# docker images
-# docker run -d -p 8100:8000 tmkube/hello
+docker images
+docker run -d -p 8100:8000 tmkube/hello
 -d : 백그라운드 모드
 -p : 포트변경
 
-# docker ps
-# docker exec -it c403442e8a59 /bin/bash
+docker ps
+docker exec -it c403442e8a59 /bin/bash
 ```
 
 
 ### Docker Image Push
-```shell
-# docker login
-# docker push tmkube/hello
+```sh
+docker login
+docker push tmkube/hello
 ```
 
 ## Kubernetes 
