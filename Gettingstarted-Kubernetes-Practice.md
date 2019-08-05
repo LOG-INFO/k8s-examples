@@ -72,7 +72,7 @@ spec:
 ```
 
 ### Service
-```bash
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
