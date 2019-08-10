@@ -87,9 +87,9 @@ spec:
 ```
 
 
-## ResourceQuota
+## LimitRange
 
-### ResourceQuota	
+### LimitRange	
 ```yaml
 apiVersion: v1
 kind: LimitRange
