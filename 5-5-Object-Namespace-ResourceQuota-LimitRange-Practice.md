@@ -4,7 +4,7 @@
 # 5-5. Object-Namespace, ResourceQuota, LimitRange (Practice)
 
 ## Namespace
-
+ 
 ### Namespace
 ```yaml
 apiVersion: v1
