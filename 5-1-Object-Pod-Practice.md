@@ -3,7 +3,7 @@
 
 # 5-1. Object-Pod (Practice)
 
-## Container
+## 1. Container
 
 ### Pod
 ```yaml
@@ -45,7 +45,7 @@ spec:
 ```
 
 
-## Label
+## 2. Label
 
 ### Pod
 ```yaml
@@ -76,7 +76,7 @@ spec:
 ```
 
 
-## Node Schedule
+## 3. Node Schedule
 
 ### Pod
 ```yaml

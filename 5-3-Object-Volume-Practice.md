@@ -3,7 +3,7 @@
 
 # 5-3. Object-Volume (Practice)
 
-## emptyDir
+## 1. emptyDir
 
 ### Pod
 ```yaml
@@ -35,7 +35,7 @@ echo "file context" >> file.txt
 
 
 
-## hostPath
+## 2. hostPath
 
 ### Pod
 ```yaml
@@ -61,7 +61,7 @@ spec:
 
 
 
-## PVC / PV
+## 3. PVC / PV
 
 ### PersistentVolume
 ```yaml

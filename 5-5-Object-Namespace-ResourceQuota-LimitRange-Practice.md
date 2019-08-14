@@ -3,7 +3,7 @@
 
 # 5-5. Object-Namespace, ResourceQuota, LimitRange (Practice)
 
-## Namespace
+## 1. Namespace
  
 ### Namespace
 ```yaml
@@ -98,7 +98,7 @@ echo "hello" >> hello.txt
 ```
 
 
-## ResourceQuota
+## 2. ResourceQuota
 
 ### Namespace
 ```yaml
@@ -145,7 +145,7 @@ spec:
 ```
 
 
-## LimitRange
+## 3. LimitRange
 
 ### Namespace
 ```yaml
