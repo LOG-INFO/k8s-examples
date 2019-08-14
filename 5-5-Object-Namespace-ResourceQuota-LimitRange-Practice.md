@@ -100,53 +100,163 @@ echo "hello" >> hello.txt
 
 ## ResourceQuota
 
-```sh
-echo "Content" >> file-c.txt
-kubectl create configmap cm-file --from-file=./file-c.txt
-echo "Content" >> file-s.txt
-kubectl create secret generic sec-file --from-file=./file-s.txt
-```
-
-### Pod	
+### Namespace
 ```yaml
 apiVersion: v1
-kind: Pod
+kind: Namespace
 metadata:
-  name: pod-file
-spec:
-  containers:
-  - name: container
-    image: tmkube/init
-    env:
-    - name: file-c
-      valueFrom:
-        configMapKeyRef:
-          name: cm-file
-          key: file-c.txt
-    - name: file-s
-      valueFrom:
-        secretKeyRef:
-          name: sec-file
-          key: file-s.txt
+  name: nm-3
 ```
 
+### ResourceQuota
+```yaml
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: rq-1
+  namespace: nm-3
+spec:
+  hard:
+    requests.memory: 1Gi
+    limits.memory: 1Gi
+```
 
-## LimitRange
+ResourceQuota Check Command
+
+```sh
+kubectl describe resourcequotas --namespace=nm-3
+```
+
 ### Pod
 ```yaml
 apiVersion: v1
 kind: Pod
 metadata:
-  name: pod-mount
+  name: pod-3
 spec:
   containers:
   - name: container
-    image: tmkube/init
-    volumeMounts:
-    - name: file-volume
-      mountPath: /mount
-  volumes:
-  - name: file-volume
-    configMap:
-      name: cm-file
+    image: tmkube/app
+    resources:
+      requests:
+        memory: 0.5Gi
+      limits:
+        memory: 0.5Gi
+```
+
+
+## LimitRange
+
+### Namespace
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nm-5
+```
+
+### LimitRange
+```yaml
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: lr-1
+spec:
+  limits:
+  - type: Container
+    min:
+      memory: 0.1Gi
+    max:
+      memory: 0.4Gi
+    maxLimitRequestRatio:
+      memory: 3
+    defaultRequest:
+      memory: 0.1Gi
+    default:
+      memory: 0.2Gi
+```
+
+LimitRange Check Command
+
+```sh
+kubectl describe limitranges --namespace=nm-5
+```
+
+
+### Pod
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-1
+spec:
+  containers:
+  - name: container
+    image: tmkube/app
+    resources:
+      requests:
+        memory: 0.1Gi
+      limits:
+        memory: 0.5Gi
+```
+
+### Namespace
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nm-6
+```
+
+### LimitRange
+```yaml
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: lr-5
+spec:
+  limits:
+  - type: Container
+    min:
+      memory: 0.1Gi
+    max:
+      memory: 0.5Gi
+    maxLimitRequestRatio:
+      memory: 1
+    defaultRequest:
+      memory: 0.5Gi
+    default:
+      memory: 0.5Gi
+```
+
+### LimitRange
+```yaml
+kind: LimitRange
+metadata:
+  name: lr-3
+spec:
+  limits:
+  - type: Container
+    min:
+      memory: 0.1Gi
+    max:
+      memory: 0.3Gi
+    maxLimitRequestRatio:
+      memory: 1
+    defaultRequest:
+      memory: 0.3Gi
+    default:
+      memory: 0.3Gi
+```
+
+### Pod
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-1
+spec:
+  containers:
+  - name: container
+    image: tmkube/app
 ```
