@@ -182,7 +182,6 @@ LimitRange Check Command
 kubectl describe limitranges --namespace=nm-5
 ```
 
-
 ### Pod
 ```yaml
 apiVersion: v1
