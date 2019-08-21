@@ -101,7 +101,7 @@ spec:
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: replica1
+  name: replica3
 spec:
   replicas: 1
   selector:
@@ -113,7 +113,6 @@ spec:
     - {key: ver, operator: Exists}
   template:
     metadata:
-      name: pod1
       labels:
         type: web
         ver: v1
