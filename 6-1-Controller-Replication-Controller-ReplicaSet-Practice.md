@@ -101,7 +101,7 @@ spec:
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: replica3
+  name: replica1
 spec:
   replicas: 1
   selector:
@@ -116,7 +116,7 @@ spec:
       labels:
         type: web
         ver: v1
-        ver: v2
+        location: dev
     spec:
       containers:
       - name: container
