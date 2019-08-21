@@ -134,8 +134,8 @@ spec:
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIngnoredDuringExecution:
-	     nodeSelectorTerms:
-	     - matchExpressions:
+        nodeSelectorTerms:
+        - matchExpressions:
   	       - {key: AZ-01, operator: Exists}
   containers:
   - name: container
