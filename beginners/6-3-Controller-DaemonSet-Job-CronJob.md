@@ -108,6 +108,7 @@ metadata:
   name: cron-job
 spec:
   schedule: "*/1 * * * *"
+  concurrencyPolicy: Allow
   jobTemplate:
     spec:
       template:
