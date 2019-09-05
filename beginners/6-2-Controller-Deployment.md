@@ -2,7 +2,7 @@
 
 # 6-2. Deployment (Practice)
 
-## 1. ReCreate
+## 1) ReCreate
  
 ### Deployment
 ```yaml
@@ -56,7 +56,7 @@ kubectl rollout undo deployment deployment-1 --to-revision=2
 kubectl rollout history deployment deployment-1
 ```
 
-## 2. RollingUpdate
+## 2) RollingUpdate
 
 ### Deployment
 ```yaml
@@ -105,7 +105,7 @@ while true; do curl 10.99.5.3:8080/version; sleep 1; done
 
 
 
-## 3. Blue/Green
+## 3) Blue/Green
 
 
 ### ReplicaSet

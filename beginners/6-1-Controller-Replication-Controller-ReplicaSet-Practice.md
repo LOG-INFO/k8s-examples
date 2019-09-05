@@ -2,7 +2,7 @@
 
 # 6-1. Controller-Replication Controller, ReplicaSet (Practice)
 
-## 1. Template, Replicas
+## 1) Template, Replicas
  
 ### Pod
 ```yaml
@@ -42,7 +42,7 @@ spec:
       terminationGracePeriodSeconds: 0
 ```
 
-## 2. Updating Controller
+## 2) Updating Controller
 ReplicationController -> ReplicaSet
 
 ### ReplicationController
@@ -92,7 +92,7 @@ spec:
 ```
 
 
-## 3. Selector
+## 3) Selector
 
 
 ### ReplicaSet

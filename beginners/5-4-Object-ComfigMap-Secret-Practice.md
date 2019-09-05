@@ -2,7 +2,7 @@
 
 # 5-4. Object-ConfigMap, Secret (Practice)
 
-## 1. Env (Literal)
+## 1) Env (Literal)
 
 ### ConfigMap
 ```yaml
@@ -43,7 +43,7 @@ spec:
 ```
 
 
-## 2. Env (File)
+## 2) Env (File)
 
 ```sh
 echo "Content" >> file-c.txt
@@ -76,7 +76,7 @@ spec:
 ```
 
 
-## 3. Volume Mount (File)
+## 3) Volume Mount (File)
 ### Pod
 ```yaml
 apiVersion: v1

@@ -2,7 +2,7 @@
 
 # 5-2. Object-Service (Practice)
 
-## 1. ClusterIP
+## 1) ClusterIP
 
 ### Pod
 ```yaml
@@ -42,7 +42,7 @@ curl 10.104.103.107:9000/hostname
 
 
 
-## 2. NodePort
+## 2) NodePort
 
 ### Service
 ```yaml
@@ -63,7 +63,7 @@ spec:
 
 
 
-## 3. Load Balancer
+## 3) Load Balancer
 
 ### Service
 ```yaml
