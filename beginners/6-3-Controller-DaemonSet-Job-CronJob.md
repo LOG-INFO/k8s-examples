@@ -2,7 +2,7 @@
 
 # 6-3. DaemonSet, Job, CronJob (Practice)
 
-## 1-1. DaemonSet - HostPort
+## 1-1) DaemonSet - HostPort
  
 ### DaemonSet
 ```yaml
@@ -32,7 +32,7 @@ spec:
 curl 192.168.0.31:18080/hostname
 ```
 
-## 1-2. DaemonSet - NodeSelector
+## 1-2) DaemonSet - NodeSelector
  
 ### DaemonSet
 ```yaml
@@ -58,7 +58,7 @@ spec:
         - containerPort: 8080
 ```
 
-## 2. Job
+## 2) Job
  
 ### Job 1
 ```yaml
@@ -98,7 +98,7 @@ spec:
         terminationGracePeriodSeconds: 0
 ```
 
-## 3. CronJob
+## 3) CronJob
  
 ### CronJob
 ```yaml
