@@ -58,6 +58,20 @@ spec:
         - containerPort: 8080
 ```
 
+### Kubectl
+Label Add
+
+```sh
+kubectl label nodes k8s-node1 os=centos
+kubectl label nodes k8s-node2 os=ubuntu
+```
+Label Remove
+
+```sh
+kubectl label nodes k8s-node2 os-
+```
+
+
 ## 2) Job
  
 ### Job 1
@@ -98,7 +112,7 @@ spec:
         terminationGracePeriodSeconds: 0
 ```
 
-## 3) CronJob
+## 3-1) CronJob
  
 ### CronJob
 ```yaml
@@ -108,7 +122,6 @@ metadata:
   name: cron-job
 spec:
   schedule: "*/1 * * * *"
-  concurrencyPolicy: Allow
   jobTemplate:
     spec:
       template:
@@ -120,3 +133,39 @@ spec:
             command: ["sh", "-c", "echo 'job start';sleep 20; echo 'job end'"]
             terminationGracePeriodSeconds: 0
 ```
+
+### Kubectl
+Manual 
+
+```sh
+kubectl create job --from=cronjob/cron-job cron-job-manual-001
+```
+Suspend
+
+```sh
+kubectl patch cronjobs cron-job -p '{"spec" : {"suspend" : false }}'
+```
+
+## 3-2) CronJob - ConcurrencyPolicy 
+(Allow, Forbid, Replace)
+### CronJob
+```yaml
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: cron-job-2
+spec:
+  schedule: "20,21,22 * * * *"
+  concurrencyPolicy: Replace
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: container
+            image: tmkube/init
+            command: ["sh", "-c", "echo 'job start';sleep 140; echo 'job end'"]
+            terminationGracePeriodSeconds: 0
+```
+
