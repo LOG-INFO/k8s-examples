@@ -44,7 +44,7 @@ kubectl -n kube-system edit deployments.apps kubernetes-dashboard
 ```
 
 ### 3. 권한부여
-전체 사용권한 부여
+전체 Object 사용권한 부여
 
 ```sh
 cat <<EOF | kubectl create -f -
@@ -66,7 +66,7 @@ EOF
 ```
 
 ### 4. 백그라운드로 proxy 띄우기	
-address에 서버 Host IP 입력 (ex. 192.168.0.30)
+--address에 자신의 Host IP 입력 (ex. 192.168.0.30)
 
 ```sh
 nohup kubectl proxy --port=8001 --address=192.168.0.30 --accept-hosts='^*$' >/dev/null 2>&1 &
