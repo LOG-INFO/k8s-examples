@@ -1,0 +1,75 @@
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+
+# 7-1. Appendix. Kubernetes Installation
+
+## 1), 2) Host OS에 CentOS 설치 및 VM 가상화를 하기 위한 Virt-Manager 준비 
+
+## 3) VM(Guest OS) 생성 및 CentOS 설치
+
+## 4), 5), 6) CentOS 설정 및 Docker, Kubernetes 설치
+
+## 7), 8) 1 Master와 2 Node를 구성하기 위해 VM 복사 
+
+## 9), 10) CentOS 설정
+
+## 11), 12), 13) Master 구성 및 Node 추가 
+
+## 14) 네트워킹 구성, 대시보드 추가
+
+## 14-1) Network Plugin
+
+## 14-2) Dashboard Plugin
+
+### 1. Dashboard 설치
+```sh
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended/kubernetes-dashboard.yaml
+```
+
+### 2. 로그인시 skip 버튼 활성화
+아래 명령어 Dashboard의 Edit 모드로 들어간 후에 args에 --enable-skip-login 추가
+
+```sh
+kubectl -n kube-system edit deployments.apps kubernetes-dashboard
+
+
+-------------------------------
+    spec:
+      containers:
+      - args:
+        - --auto-generate-certificates
+        - --enable-skip-login
+-------------------------------
+```
+
+### 3. 권한부여
+```sh
+cat <<EOF | kubectl create -f -
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: kubernetes-dashboard
+  labels:
+    k8s-app: kubernetes-dashboard
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: kubernetes-dashboard
+  namespace: kube-system
+EOF	
+```
+
+### 4. 백그라운드로 proxy 띄우기	
+address에 서버 Host IP 입력
+
+```sh
+nohup kubectl proxy --port=8001 --address=192.168.0.30 --accept-hosts='^*$' &
+```
+
+### 5. 접속 URL
+http://192.168.0.30:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/.
+
+
+
