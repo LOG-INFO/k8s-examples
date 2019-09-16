@@ -24,7 +24,7 @@
  
 ### 1. Dashboard 설치
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended/kubernetes-dashboard.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
 ```
 
 ### 2. 로그인시 skip 버튼 활성화
