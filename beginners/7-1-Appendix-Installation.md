@@ -18,8 +18,6 @@
 
 ## 14-1) Network Plugin
 
-```
-
 ## 14-2) Dashboard Plugin
 
 ### 1. Dashboard 설치
