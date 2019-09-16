@@ -18,6 +18,8 @@
 
 ## 14-1) Network Plugin
 
+```
+
 ## 14-2) Dashboard Plugin
 
 ### 1. Dashboard 설치
@@ -42,6 +44,8 @@ kubectl -n kube-system edit deployments.apps kubernetes-dashboard
 ```
 
 ### 3. 권한부여
+전체 사용권한 부여
+
 ```sh
 cat <<EOF | kubectl create -f -
 apiVersion: rbac.authorization.k8s.io/v1beta1
@@ -62,14 +66,15 @@ EOF
 ```
 
 ### 4. 백그라운드로 proxy 띄우기	
-address에 서버 Host IP 입력
+address에 서버 Host IP 입력 (ex. 192.168.0.30)
 
 ```sh
-nohup kubectl proxy --port=8001 --address=192.168.0.30 --accept-hosts='^*$' &
+nohup kubectl proxy --port=8001 --address=192.168.0.30 --accept-hosts='^*$' >/dev/null 2>&1 &
 ```
 
-### 5. 접속 URL
+### 5. 접속 URL (ex. 192.168.0.30)
+```sh
 http://192.168.0.30:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/.
-
+```
 
 
