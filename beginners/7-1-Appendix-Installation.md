@@ -20,6 +20,8 @@
 
 ## 14-2) Dashboard Plugin
 
+아래 가이드는 Dashboard 설치는 내부망에서 Admin 유저만 사용할 경우 [Kubectl Proxy]를 이용해서 모든 권한으로 Dashboard를 이용할 수 있는 설정입니다.
+ 
 ### 1. Dashboard 설치
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended/kubernetes-dashboard.yaml
