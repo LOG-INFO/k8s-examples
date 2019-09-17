@@ -67,6 +67,7 @@ Network Plugin에는
 
 아래 가이드는 내부망에서 Admin 유저가 모든 권한으로 Dashboard를 사용하기 위한 설치 내용 입니다.
 강좌 실습을 위한 설정이니 실제 프로젝트에선 이렇게 사용하시면 안되요 ^^
+<br/>
 <참고 URL> https://github.com/kubernetes/dashboard
 
 <details><summary>show</summary>
