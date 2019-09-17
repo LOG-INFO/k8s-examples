@@ -13,7 +13,8 @@
 
 ## 3) VM 생성 ( Master 용 )
 
-Kubernetes 설치 공식 페이지를 참조 했어요
+Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식싸이트에서 명령어 참고 바래요.
+<br/>
 <참고 URL> https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 
 <details><summary>show</summary>
@@ -56,10 +57,32 @@ Kubernetes 설치 공식 페이지를 참조 했어요
 
 ## 14-1) Network Plugin
 
-Network Plugin에는 
+Kubernetes Cluster Networking에는 많은 Plugin들이 있는데 그중 Calico 설치에 대한 내용 입니다.
+<br/>
+<참고 URL> https://kubernetes.io/docs/concepts/cluster-administration/networking/
+<br/>
+<참고 URL> https://docs.projectcalico.org/v3.9/getting-started/kubernetes/
 
 <details><summary>show</summary>
 <p>
+
+
+### 1. Calico 설치
+Calico는 기본 192.168.0.0/16 대역으로 설치가 되는데, 그럼  실제 VM이 사용하고 있는 대역대와 겹치기 때문에 수정을 해서 설치해야 할 경우
+
+```sh
+yum install wget
+wget https://docs.projectcalico.org/v3.9/manifests/calico.yaml
+sed s/192.168.0.0\\/16/10.16.0.0\\/16/g -i calico.yaml
+kubectl apply -f calico.yaml
+```
+
+기본 대역으로 사용해도 문제 없을 경우
+
+```sh
+kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml
+```
+
 </p>
 </details>
 
