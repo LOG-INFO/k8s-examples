@@ -138,19 +138,19 @@ hostnamectl set-hostname k8s-node2
 
 ## 5) Master 초기화 후 Node 연결
 
-## 5-1) InMaster
+## 5-1) Master
 
 <details><summary>show</summary>
 <p>
 
-### 5-1-1) Master 스왑 비활성화
+### 5-1-1) 스왑 비활성화
 스왑 사용시 kubelet이 실행되지 않음
 
 ```sh
 swapoff -a && sed -i '/ swap / s/^/#/' /etc/fstab
 ```
 
-### 11-2. iptables 커널 옵션 활성화
+### 5-1-2) iptables 커널 옵션 활성화
 net/bridge.bridge-nf-call-iptables 커널 옵션 활성화
 
 ```sh
@@ -160,19 +160,19 @@ net.bridge.bridge-nf-call-iptables = 1
 EOF
 ```
 
-### 11-3. init
+### 5-1-3) 초기화 명령 실행
+`pod-network-cidr` 설명
+`apiserver-advertise-address` 설명
+실행 후 `[Your Kubernetes master has initialized successfully!]` 문구를 확인하고 아래 내용 복사해서 별도로 저장해 둡니다. 
+kubeadm join 192.168.0.30:6443 --token ki4szr.t3wondaclij6d1a3 \
+    --discovery-token-ca-cert-hash sha256:2370f0451342c6e4bd0d38f6c2511bda5c50374c85e9c09da28e12dd666d5987
 
 ```sh
 kubeadm init --pod-network-cidr=10.16.0.0/16 --apiserver-advertise-address=192.168.0.30
 ```
 
-[Your Kubernetes master has initialized successfully!] 문구 확인후 아래 내용 복사
-kubeadm join 192.168.0.30:6443 --token ki4szr.t3wondaclij6d1a3 \
-    --discovery-token-ca-cert-hash sha256:2370f0451342c6e4bd0d38f6c2511bda5c50374c85e9c09da28e12dd666d5987
-    
-
-### 11-4. 환경변수 설정  
-root 계정을 이용해서 kubectl을 실행할 경우 다음 환경 변수를 설정
+### 5-1-4) 환경변수 설정
+root 계정을 이용해서 kubectl을 실행하기 위한 환경 변수를 설정
 
 ```sh
 mkdir -p $HOME/.kube
@@ -180,23 +180,46 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
+### 5-1-5) kubectl 자동완성 기능 설치
+kubectl 사용시 [tab] 버튼을 이용해서 다음에 올 명령어 리스트를 조회 할 수 있어요.
+명령 실행 후 바로 적용이 안되기 때문에 접속을 끊고 다시 연결 후에 사용 가능합니다. 
 
-### 12-1, 13-1. IP설정
--
+```sh
+yum install bash-completion -y
+source <(kubectl completion bash)
+echo "source <(kubectl completion bash)" >> ~/.bashrc
+```
+
+</p>
+</details>
+
+
+## 5-2) Node
+
+<details><summary>show</summary>
+<p>
+
+### 5-2-1) IP 관련 설정
+설명
 
 ```sh
 echo 1 > /proc/sys/net/ipv4/ip_forward
 ```
 
-### 12-2, 13-2. Node Join 
--
+### 5-2-2) Node 연결
+Master Init 후 복사 내용 붙여넣기
 
 ```sh
 kubeadm join 192.168.0.30:6443 --token 7xd747.bfouwf64kz437sqs \
     --discovery-token-ca-cert-hash sha256:ec75641cd258f2930a7f73abfe540bb484eb295ad4500ccdaa166208f97c5117
-
 ```
 
+### 5-2-3) Node 연결 확인
+Master 서버에 접속해서 아래 명령 입력 후 결과 확인
+
+```sh
+kubectl get nodes
+```
 
 </p>
 </details>
