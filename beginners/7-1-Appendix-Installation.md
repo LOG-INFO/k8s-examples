@@ -11,7 +11,7 @@
 </p>
 </details>
 
-## 2) Create VM `( For Master )`
+## 2) Create VM ( For Master )
 진행중
 
 <details><summary>show</summary>
@@ -125,7 +125,7 @@ yum install -y docker kubelet kubeadm kubectl --disableexcludes=kubernetes
 
 
 
-## 4) Clone VM `( For Node )`
+## 4) Clone VM ( For Node )
 
 ### 4-1) Clone VM
 
