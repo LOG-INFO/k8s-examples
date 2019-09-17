@@ -2,21 +2,64 @@
 
 # 7-1. Appendix. Kubernetes Installation
 
-## 1), 2) Host OS에 CentOS 설치 및 VM 가상화를 하기 위한 Virt-Manager 준비 
 
-## 3) VM(Guest OS) 생성 및 CentOS 설치
+## 1~2) 한 대의 컴퓨터에 여러 VM을 만들 준비
 
-## 4), 5), 6) CentOS 설정 및 Docker, Kubernetes 설치
+ㅇ
+<details><summary>show</summary>
+<p>
+</p>
+</details>
 
-## 7), 8) 1 Master와 2 Node를 구성하기 위해 VM 복사 
+## 3) VM 생성 ( Master 용 )
 
-## 9), 10) CentOS 설정
+Kubernetes 설치 싸이트 : 
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 
-## 11), 12), 13) Master 구성 및 Node 추가 
+<details><summary>show</summary>
+<p>
+</p>
+</details>
 
-## 14) 네트워킹 구성, 대시보드 추가
+## 4~6) 도커와 쿠버네티스 설치
+
+ㄴ
+<details><summary>show</summary>
+<p>
+</p>
+</details>
+
+## 7~10) VM 복사 및 CentOS 설정 ( Node 용 )
+
+ㅇ
+<details><summary>show</summary>
+<p>
+</p>
+</details>
+
+## 11~13) Master 초기화 및 Node 연결
+
+ㅇ
+<details><summary>show</summary>
+<p>
+</p>
+</details>
+
+## 14) Kubernetes Network와 Dashboard 설치
+
+ㅇ
+<details><summary>show</summary>
+<p>
+</p>
+</details>
 
 ## 14-1) Network Plugin
+dd
+
+<details><summary>show</summary>
+<p>
+</p>
+</details>
 
 ## 14-2) Dashboard Plugin
 
@@ -31,14 +74,16 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/
 ```
 
 ### 2. 로그인시 skip 버튼 활성화
-아래 명령어 Dashboard의 Edit 모드로 들어간 후에 args에 --enable-skip-login 추가
+아래 명령어로 Dashboard의 Edit 모드로 들어간 후에 
 
-
- 
 ```sh
 kubectl -n kube-system edit deployments.apps kubernetes-dashboard
 
+```
 
+args에 `- --enable-skip-login` 추가
+
+```sh
 -------------------------------
     spec:
       containers:
