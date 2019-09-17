@@ -26,7 +26,7 @@ Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식�
 <br/>
 <참고 URL> https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 
-### 3-1) 사전준비
+### 3-1) Pre-Setting
 
 <details><summary>show</summary>
 <p>
@@ -108,7 +108,7 @@ EOF
 </p>
 </details>
 
-### 3-2) 설치 
+### 3-2) Install 
 
 <details><summary>show</summary>
 <p>
@@ -127,14 +127,14 @@ yum install -y docker kubelet kubeadm kubectl --disableexcludes=kubernetes
 
 ## 4) Clone VM ( For Node )
 
-### 4-1) VM 복사하기
+### 4-1) Clone VM
 
 <details><summary>show</summary>
 <p>
 </p>
 </details>
 
-### 4-2) Node 설정 
+### 4-2) Config Node
 
 <details><summary>show</summary>
 <p>
@@ -156,7 +156,7 @@ hostnamectl set-hostname k8s-node2
 </details>
 
 
-## 5) Create VM ( For Master )
+## 5) Initialize Master and Join Node
 
 <참고 URL> 
 https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
