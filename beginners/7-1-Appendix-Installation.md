@@ -26,10 +26,10 @@ Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식�
 <br/>
 <참고 URL> https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 
+### 3-1) 사전준비
+
 <details><summary>show</summary>
 <p>
-
-## 3-1) 사전준비
 
 ### 3-1-1) SELinux 설정
 
@@ -127,14 +127,14 @@ yum install -y docker kubelet kubeadm kubectl --disableexcludes=kubernetes
 
 ## 4) Clone VM ( For Node )
 
-## 4-1) VM 복사하기
+### 4-1) VM 복사하기
 
 <details><summary>show</summary>
 <p>
 </p>
 </details>
 
-## 4-2) Node 설정 
+### 4-2) Node 설정 
 
 <details><summary>show</summary>
 <p>
@@ -161,7 +161,7 @@ hostnamectl set-hostname k8s-node2
 <참고 URL> 
 https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 
-## 5-1) Master
+### 5-1) Master
 
 <details><summary>show</summary>
 <p>
@@ -205,7 +205,7 @@ echo "source <(kubectl completion bash)" >> ~/.bashrc
 </details>
 
 
-## 5-2) Node
+### 5-2) Node
 
 <details><summary>show</summary>
 <p>
@@ -237,7 +237,7 @@ kubectl get nodes
 
 ## 6) Add Plugin
 
-## 6-1) Networking
+### 6-1) Networking
 
 Kubernetes Cluster Networking에는 많은 Plugin들이 있는데 그중 Calico 설치에 대한 내용 입니다.
 <br/>
@@ -268,7 +268,7 @@ kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml
 </p>
 </details>
 
-## 6-2) Dashboard
+### 6-2) Dashboard
 
 아래 가이드는 내부망에서 Admin 유저가 모든 권한으로 Dashboard를 사용하기 위한 설치 내용 입니다.
 강좌 실습을 위한 설정이니 실제 프로젝트에선 이렇게 사용하시면 안되요 ^^
