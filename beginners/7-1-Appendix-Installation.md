@@ -28,6 +28,71 @@ Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식�
 -
 <details><summary>show</summary>
 <p>
+
+### 1. SELinux 설정
+
+아래 설정으로 SELinux을 permissive로 변경해야하고 
+
+```sh
+setenforce 0
+```
+리부팅시 다시 원복되기 때문에 아래 명령을 통해서 영구적으로 변경합니다 
+
+```sh
+sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+```
+
+아래 명령어로 결과 확인
+
+```sh
+sestatus
+```
+
+
+### 2. firewalld 비활성화
+내용
+
+```sh
+systemctl stop firewalld
+systemctl disable firewalld
+systemctl disable NetworkManager
+systemctl stop NetworkManager
+```
+
+
+### 3. hosts 등록
+계획된 master와 node의 호스트 이름과 IP를 모두 등록해줍니다.
+
+```sh
+cat << EOF >> /etc/hosts
+192.168.0.30 k8s-master
+192.168.0.31 k8s-node1
+192.168.0.32 k8s-node2
+EOF
+```
+
+### 4. 쿠버네티스 YUM 리포지토리 설정:
+-
+
+```sh
+cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+```
+
+### 5. 설치 및 실행
+
+```sh
+yum install -y docker kubelet kubeadm kubectl --disableexcludes=kubernetes
+
+```
+
 </p>
 </details>
 
@@ -36,6 +101,31 @@ Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식�
 -
 <details><summary>show</summary>
 <p>
+
+### 1. VM 복사하기
+-
+
+```sh
+
+```
+
+### 2. Network 변경하기
+-
+
+```sh
+vi /etc/sysconfig/network-scripts/ifcfg-eth0
+systemctl restart network
+```
+
+### 3. Host Name 변경
+-
+
+```sh
+hostnamectl set-hostname k8s-node1
+hostnamectl set-hostname k8s-node2
+
+```
+
 </p>
 </details>
 
@@ -44,6 +134,62 @@ Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식�
 -
 <details><summary>show</summary>
 <p>
+
+### 11-1. Master 스왑 비활성화
+스왑 사용시 kubelet이 실행되지 않음
+
+```sh
+swapoff -a && sed -i '/ swap / s/^/#/' /etc/fstab
+```
+
+### 11-2. iptables 커널 옵션 활성화
+net/bridge.bridge-nf-call-iptables 커널 옵션 활성화
+
+```sh
+sysctl -w net.bridge.bridge-nf-call-iptables=1
+cat <<EOF >  /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+```
+
+### 11-3. init
+
+```sh
+kubeadm init --pod-network-cidr=10.16.0.0/16 --apiserver-advertise-address=192.168.0.30
+```
+
+[Your Kubernetes master has initialized successfully!] 문구 확인후 아래 내용 복사
+kubeadm join 192.168.0.30:6443 --token ki4szr.t3wondaclij6d1a3 \
+    --discovery-token-ca-cert-hash sha256:2370f0451342c6e4bd0d38f6c2511bda5c50374c85e9c09da28e12dd666d5987
+    
+
+### 11-4. 환경변수 설정  
+root 계정을 이용해서 kubectl을 실행할 경우 다음 환경 변수를 설정
+
+```sh
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
+
+### 12-1, 13-1. IP설정
+-
+
+```sh
+echo 1 > /proc/sys/net/ipv4/ip_forward
+```
+
+### 12-2, 13-2. Node Join 
+-
+
+```sh
+kubeadm join 192.168.0.30:6443 --token 7xd747.bfouwf64kz437sqs \
+    --discovery-token-ca-cert-hash sha256:ec75641cd258f2930a7f73abfe540bb484eb295ad4500ccdaa166208f97c5117
+
+```
+
+
 </p>
 </details>
 
