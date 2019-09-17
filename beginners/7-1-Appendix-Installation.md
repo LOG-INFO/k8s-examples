@@ -30,6 +30,9 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/
 ### 2. 로그인시 skip 버튼 활성화
 아래 명령어 Dashboard의 Edit 모드로 들어간 후에 args에 --enable-skip-login 추가
 
+<details><summary>show</summary>
+<p>
+ 
 ```sh
 kubectl -n kube-system edit deployments.apps kubernetes-dashboard
 
@@ -77,4 +80,5 @@ nohup kubectl proxy --port=8001 --address=192.168.0.30 --accept-hosts='^*$' >/de
 http://192.168.0.30:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/.
 ```
 
-
+</p>
+</details>
