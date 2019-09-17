@@ -5,7 +5,7 @@
 
 ## 1~2) 한 대의 컴퓨터에 여러 VM을 만들 준비
 
-ㅇ
+-
 <details><summary>show</summary>
 <p>
 </p>
@@ -13,17 +13,18 @@
 
 ## 3) VM 생성 ( Master 용 )
 
-Kubernetes 설치 싸이트 : 
-https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+Kubernetes 설치 공식 페이지를 참조 했어요
+<참고 URL> https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 
 <details><summary>show</summary>
 <p>
 </p>
 </details>
 
+
 ## 4~6) 도커와 쿠버네티스 설치
 
-ㄴ
+-
 <details><summary>show</summary>
 <p>
 </p>
@@ -31,7 +32,7 @@ https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-ku
 
 ## 7~10) VM 복사 및 CentOS 설정 ( Node 용 )
 
-ㅇ
+-
 <details><summary>show</summary>
 <p>
 </p>
@@ -39,7 +40,7 @@ https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-ku
 
 ## 11~13) Master 초기화 및 Node 연결
 
-ㅇ
+-
 <details><summary>show</summary>
 <p>
 </p>
@@ -47,14 +48,15 @@ https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-ku
 
 ## 14) Kubernetes Network와 Dashboard 설치
 
-ㅇ
+-
 <details><summary>show</summary>
 <p>
 </p>
 </details>
 
 ## 14-1) Network Plugin
-dd
+
+Network Plugin에는 
 
 <details><summary>show</summary>
 <p>
@@ -63,7 +65,9 @@ dd
 
 ## 14-2) Dashboard Plugin
 
-아래 가이드는 내부망에서 Admin 유저만 사용할 경우 [Kubectl Proxy]를 이용해서 모든 권한으로 Dashboard를 이용할 수 있는 설치 내용 입니다.
+아래 가이드는 내부망에서 Admin 유저가 모든 권한으로 Dashboard를 사용하기 위한 설치 내용 입니다.
+강좌 실습을 위한 설정이니 실제 프로젝트에선 이렇게 사용하시면 안되요 ^^
+<참고 URL> https://github.com/kubernetes/dashboard
 
 <details><summary>show</summary>
 <p>
@@ -94,7 +98,7 @@ args에 `- --enable-skip-login` 추가
 ```
 
 ### 3. 권한부여
-전체 Object 사용권한 부여
+ClusterRoleBinding을 만들어서 Dashboard에서 전체 Object를 사용할 수 있도록 권한부여
 
 ```sh
 cat <<EOF | kubectl create -f -
@@ -116,13 +120,14 @@ EOF
 ```
 
 ### 4. 백그라운드로 proxy 띄우기	
---address에 자신의 Host IP 입력 (ex. 192.168.0.30)
+`--address`에 자신의 Host IP 입력 
 
 ```sh
 nohup kubectl proxy --port=8001 --address=192.168.0.30 --accept-hosts='^*$' >/dev/null 2>&1 &
 ```
 
-### 5. 접속 URL (ex. 192.168.0.30)
+### 5. 접속 URL 
+
 ```sh
 http://192.168.0.30:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/.
 ```
