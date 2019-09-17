@@ -49,12 +49,6 @@ Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식�
 
 ## 14) Kubernetes Network와 Dashboard 설치
 
--
-<details><summary>show</summary>
-<p>
-</p>
-</details>
-
 ## 14-1) Network Plugin
 
 Kubernetes Cluster Networking에는 많은 Plugin들이 있는데 그중 Calico 설치에 대한 내용 입니다.
