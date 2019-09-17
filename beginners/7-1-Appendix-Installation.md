@@ -3,15 +3,24 @@
 # 7-1. Appendix. Kubernetes Installation
 
 
-## 1~2) 한 대의 컴퓨터에 여러 VM을 만들 준비
+## 1) Setting Physical Server
+진행중
 
--
 <details><summary>show</summary>
 <p>
 </p>
 </details>
 
-## 3) VM 생성 ( Master 용 )
+## 2) Create VM ( For Master )
+진행중
+
+<details><summary>show</summary>
+<p>
+</p>
+</details>
+
+
+## 3) Docker, Kubernetes Installation
 
 Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식싸이트에서 명령어 참고 바래요.
 <br/>
@@ -19,24 +28,10 @@ Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식�
 
 <details><summary>show</summary>
 <p>
-</p>
-</details>
 
+## 3-1) 사전준비
 
-## 4~6) 도커와 쿠버네티스 설치
-
-Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식싸이트에서 명령어 참고 바래요.
-<br/>
-<참고 URL> https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
-
-<details><summary>show</summary>
-<p>
-
-## 4) CentOS 
-
-## 4) Docker
-
-### 4-1-1) SELinux 설정
+### 3-1-1) SELinux 설정
 
 아래 설정으로 SELinux을 permissive로 변경해야하고 
 
@@ -56,7 +51,7 @@ sestatus
 ```
 
 
-### 4-2) firewalld 비활성화
+### 3-1-2) firewalld 비활성화
 내용
 
 ```sh
@@ -66,14 +61,14 @@ systemctl disable NetworkManager
 systemctl stop NetworkManager
 ```
 
-### 4-1-1) 스왑 비활성화
+### 3-1-3) 스왑 비활성화
 스왑 사용시 kubelet이 실행되지 않음
 
 ```sh
 swapoff -a && sed -i '/ swap / s/^/#/' /etc/fstab
 ```
 
-### 4-1-2) iptables 커널 옵션 활성화
+### 3-1-4) iptables 커널 옵션 활성화
 net/bridge.bridge-nf-call-iptables 커널 옵션 활성화
 
 ```sh
@@ -84,7 +79,7 @@ EOF
 ```
 
 
-### 4-3) hosts 등록
+### 3-1-5) hosts 등록
 계획된 master와 node의 호스트 이름과 IP를 모두 등록해줍니다.
 
 ```sh
@@ -95,7 +90,7 @@ cat << EOF >> /etc/hosts
 EOF
 ```
 
-### 4. 쿠버네티스 YUM 리포지토리 설정:
+### 3-1-6) 쿠버네티스 YUM 리포지토리 설정:
 -
 
 ```sh
@@ -110,7 +105,15 @@ gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cl
 EOF
 ```
 
-### 5. 설치 및 실행
+</p>
+</details>
+
+### 3-2) 설치 
+
+<details><summary>show</summary>
+<p>
+
+### 3-2-1) Docker, Kubernetes 설치 
 
 ```sh
 yum install -y docker kubelet kubeadm kubectl --disableexcludes=kubernetes
@@ -120,40 +123,40 @@ yum install -y docker kubelet kubeadm kubectl --disableexcludes=kubernetes
 </p>
 </details>
 
-## 7~10) VM 복사 및 CentOS 설정 ( Node 용 )
 
--
+
+## 4) Clone VM ( For Node )
+
+## 4-1) VM 복사하기
+
 <details><summary>show</summary>
 <p>
+</p>
+</details>
 
-### 1. VM 복사하기
--
+## 4-2) Node 설정 
 
-```sh
-
-```
-
-### 2. Network 변경하기
--
+<details><summary>show</summary>
+<p>
+### 4-2-1) Network 변경하기
 
 ```sh
 vi /etc/sysconfig/network-scripts/ifcfg-eth0
 systemctl restart network
 ```
 
-### 3. Host Name 변경
--
+### 4-2-2) Host Name 변경
 
 ```sh
 hostnamectl set-hostname k8s-node1
 hostnamectl set-hostname k8s-node2
-
 ```
 
 </p>
 </details>
 
-## 5) Master 초기화 후 Node 연결
+
+## 5) Create VM ( For Master )
 
 <참고 URL> 
 https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
@@ -232,7 +235,7 @@ kubectl get nodes
 </p>
 </details>
 
-## 6) Plugin 설치
+## 6) Add Plugin
 
 ## 6-1) Networking
 
