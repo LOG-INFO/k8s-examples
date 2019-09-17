@@ -25,11 +25,18 @@ Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식�
 
 ## 4~6) 도커와 쿠버네티스 설치
 
--
+Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식싸이트에서 명령어 참고 바래요.
+<br/>
+<참고 URL> https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+
 <details><summary>show</summary>
 <p>
 
-### 1. SELinux 설정
+## 4) CentOS 
+
+## 4) Docker
+
+### 4-1-1) SELinux 설정
 
 아래 설정으로 SELinux을 permissive로 변경해야하고 
 
@@ -49,7 +56,7 @@ sestatus
 ```
 
 
-### 2. firewalld 비활성화
+### 4-2) firewalld 비활성화
 내용
 
 ```sh
@@ -60,7 +67,7 @@ systemctl stop NetworkManager
 ```
 
 
-### 3. hosts 등록
+### 4-3) hosts 등록
 계획된 master와 node의 호스트 이름과 IP를 모두 등록해줍니다.
 
 ```sh
@@ -129,13 +136,14 @@ hostnamectl set-hostname k8s-node2
 </p>
 </details>
 
-## 11~13) Master 초기화 및 Node 연결
+## 5) Master 초기화 후 Node 연결
 
--
+## 5-1) InMaster
+
 <details><summary>show</summary>
 <p>
 
-### 11-1. Master 스왑 비활성화
+### 5-1-1) Master 스왑 비활성화
 스왑 사용시 kubelet이 실행되지 않음
 
 ```sh
@@ -193,9 +201,9 @@ kubeadm join 192.168.0.30:6443 --token 7xd747.bfouwf64kz437sqs \
 </p>
 </details>
 
-## 14) Kubernetes Network와 Dashboard 설치
+## 6) Plugin 설치
 
-## 14-1) Network Plugin
+## 6-1) Networking
 
 Kubernetes Cluster Networking에는 많은 Plugin들이 있는데 그중 Calico 설치에 대한 내용 입니다.
 <br/>
@@ -207,7 +215,7 @@ Kubernetes Cluster Networking에는 많은 Plugin들이 있는데 그중 Calico 
 <p>
 
 
-### 1. Calico 설치
+### 6-1-1) Calico 설치
 Calico는 기본 192.168.0.0/16 대역으로 설치가 되는데, 그럼  실제 VM이 사용하고 있는 대역대와 겹치기 때문에 수정을 해서 설치해야 할 경우
 
 ```sh
@@ -226,7 +234,7 @@ kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml
 </p>
 </details>
 
-## 14-2) Dashboard Plugin
+## 6-2) Dashboard
 
 아래 가이드는 내부망에서 Admin 유저가 모든 권한으로 Dashboard를 사용하기 위한 설치 내용 입니다.
 강좌 실습을 위한 설정이니 실제 프로젝트에선 이렇게 사용하시면 안되요 ^^
@@ -236,12 +244,12 @@ kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml
 <details><summary>show</summary>
 <p>
 
-### 1. Dashboard 설치
+### 6-2-1) Dashboard 설치
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
 ```
 
-### 2. 로그인시 skip 버튼 활성화
+### 6-2-2) 로그인시 skip 버튼 활성화
 아래 명령어로 Dashboard의 Edit 모드로 들어간 후에 
 
 ```sh
@@ -261,7 +269,7 @@ args에 `- --enable-skip-login` 추가
 -------------------------------
 ```
 
-### 3. 권한부여
+### 6-2-3) 권한부여
 ClusterRoleBinding을 만들어서 Dashboard에서 전체 Object를 사용할 수 있도록 권한부여
 
 ```sh
@@ -283,14 +291,14 @@ subjects:
 EOF	
 ```
 
-### 4. 백그라운드로 proxy 띄우기	
+### 6-2-4) 백그라운드로 proxy 띄우기	
 `--address`에 자신의 Host IP 입력 
 
 ```sh
 nohup kubectl proxy --port=8001 --address=192.168.0.30 --accept-hosts='^*$' >/dev/null 2>&1 &
 ```
 
-### 5. 접속 URL 
+### 6-2-5) 접속 URL 
 
 ```sh
 http://192.168.0.30:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/.
