@@ -66,6 +66,23 @@ systemctl disable NetworkManager
 systemctl stop NetworkManager
 ```
 
+### 4-1-1) 스왑 비활성화
+스왑 사용시 kubelet이 실행되지 않음
+
+```sh
+swapoff -a && sed -i '/ swap / s/^/#/' /etc/fstab
+```
+
+### 4-1-2) iptables 커널 옵션 활성화
+net/bridge.bridge-nf-call-iptables 커널 옵션 활성화
+
+```sh
+sysctl -w net.bridge.bridge-nf-call-iptables=1
+cat <<EOF >  /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+```
+
 
 ### 4-3) hosts 등록
 계획된 master와 node의 호스트 이름과 IP를 모두 등록해줍니다.
@@ -138,32 +155,22 @@ hostnamectl set-hostname k8s-node2
 
 ## 5) Master 초기화 후 Node 연결
 
+<참고 URL> 
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+
 ## 5-1) Master
 
 <details><summary>show</summary>
 <p>
 
-### 5-1-1) 스왑 비활성화
-스왑 사용시 kubelet이 실행되지 않음
 
-```sh
-swapoff -a && sed -i '/ swap / s/^/#/' /etc/fstab
-```
-
-### 5-1-2) iptables 커널 옵션 활성화
-net/bridge.bridge-nf-call-iptables 커널 옵션 활성화
-
-```sh
-sysctl -w net.bridge.bridge-nf-call-iptables=1
-cat <<EOF >  /etc/sysctl.d/k8s.conf
-net.bridge.bridge-nf-call-iptables = 1
-EOF
-```
-
-### 5-1-3) 초기화 명령 실행
+### 5-1-1) 초기화 명령 실행
 `pod-network-cidr` 설명
+<br/>
 `apiserver-advertise-address` 설명
+<br/>
 실행 후 `[Your Kubernetes master has initialized successfully!]` 문구를 확인하고 아래 내용 복사해서 별도로 저장해 둡니다. 
+<br/>
 kubeadm join 192.168.0.30:6443 --token ki4szr.t3wondaclij6d1a3 \
     --discovery-token-ca-cert-hash sha256:2370f0451342c6e4bd0d38f6c2511bda5c50374c85e9c09da28e12dd666d5987
 
@@ -171,7 +178,7 @@ kubeadm join 192.168.0.30:6443 --token ki4szr.t3wondaclij6d1a3 \
 kubeadm init --pod-network-cidr=10.16.0.0/16 --apiserver-advertise-address=192.168.0.30
 ```
 
-### 5-1-4) 환경변수 설정
+### 5-1-2) 환경변수 설정
 root 계정을 이용해서 kubectl을 실행하기 위한 환경 변수를 설정
 
 ```sh
@@ -180,8 +187,9 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-### 5-1-5) kubectl 자동완성 기능 설치
+### 5-1-3) kubectl 자동완성 기능 설치
 kubectl 사용시 [tab] 버튼을 이용해서 다음에 올 명령어 리스트를 조회 할 수 있어요.
+<br/>
 명령 실행 후 바로 적용이 안되기 때문에 접속을 끊고 다시 연결 후에 사용 가능합니다. 
 
 ```sh
