@@ -21,7 +21,10 @@
 ## 14-2) Dashboard Plugin
 
 아래 가이드는 내부망에서 Admin 유저만 사용할 경우 [Kubectl Proxy]를 이용해서 모든 권한으로 Dashboard를 이용할 수 있는 설치 내용 입니다.
- 
+
+<details><summary>show</summary>
+<p>
+
 ### 1. Dashboard 설치
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
@@ -30,8 +33,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/
 ### 2. 로그인시 skip 버튼 활성화
 아래 명령어 Dashboard의 Edit 모드로 들어간 후에 args에 --enable-skip-login 추가
 
-<details><summary>show</summary>
-<p>
+
  
 ```sh
 kubectl -n kube-system edit deployments.apps kubernetes-dashboard
