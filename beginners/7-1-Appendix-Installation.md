@@ -93,7 +93,7 @@ virt-manager
 
 ## 3) Docker, Kubernetes Installation
 
-Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식싸이트에서 명령어 참고 바래요.
+Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식싸이트에서 명령어 참고 바래요
 <br/>
 <참고 URL> https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 
@@ -104,14 +104,14 @@ Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식�
 
 ### 3-1-1) SELinux 설정
 
-쿠버네티스가 Pod Network에 필요한 호스트 파일 시스템에 액세스가 가능하도록 하기 위해서 필요한 설정입니다.
+쿠버네티스가 Pod Network에 필요한 호스트 파일 시스템에 액세스가 가능하도록 하기 위해서 필요한 설정이예요
 <br/>
 아래 설정으로 SELinux을 permissive로 변경해야하고 
 
 ```sh
 setenforce 0
 ```
-리부팅시 다시 원복되기 때문에 아래 명령을 통해서 영구적으로 변경합니다 
+리부팅시 다시 원복되기 때문에 아래 명령을 통해서 영구적으로 변경 해야되요
 
 ```sh
 sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
@@ -125,46 +125,37 @@ sestatus
 
 
 ### 3-1-2) firewalld 비활성화
-내용
 
 ```sh
 systemctl stop firewalld
 systemctl disable firewalld
-systemctl disable NetworkManager
 systemctl stop NetworkManager
+systemctl disable NetworkManager
 ```
 
-### 3-1-3) 스왑 비활성화
-스왑 사용시 kubelet이 실행되지 않음
+### 3-1-3) Swap 비활성화
+Swap 사용에 관련해서는 많은 의견이 있어요.
+<br/>
+<참고 URL> https://github.com/kubernetes/kubernetes/issues/53533
+<br/>
+위 내용을 참고하셔서 swap 사용시의 고려해야할 점을 확인하시고 일단 여기선 사용하지 않도록 설정할께요.
 
 ```sh
 swapoff -a && sed -i '/ swap / s/^/#/' /etc/fstab
 ```
 
 ### 3-1-4) iptables 커널 옵션 활성화
-net/bridge.bridge-nf-call-iptables 커널 옵션 활성화
+RHEL이나 CentOS7 사용시 iptables가 무시되서 트래픽이 잘못 라우팅되는 문제가 발생한다고 하여 아래 설정이 추가되요
 
 ```sh
-sysctl -w net.bridge.bridge-nf-call-iptables=1
 cat <<EOF >  /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF
+sysctl --system
 ```
 
-
-### 3-1-5) hosts 등록
-계획된 master와 node의 호스트 이름과 IP를 모두 등록해줍니다.
-
-```sh
-cat << EOF >> /etc/hosts
-192.168.0.30 k8s-master
-192.168.0.31 k8s-node1
-192.168.0.32 k8s-node2
-EOF
-```
-
-### 3-1-6) 쿠버네티스 YUM 리포지토리 설정:
--
+### 3-1-5) 쿠버네티스 YUM 리포지토리 설정
 
 ```sh
 cat <<EOF > /etc/yum.repos.d/kubernetes.repo
@@ -177,6 +168,26 @@ repo_gpgcheck=1
 gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 EOF
 ```
+
+### 3-1-6) Centos Update
+계획된 master와 node의 호스트 이름과 IP를 모두 등록해줍니다.
+
+```sh
+yum update
+```
+
+### 3-1-7) hosts 등록
+계획된 master와 node의 호스트 이름과 IP를 모두 등록해줍니다.
+
+```sh
+cat << EOF >> /etc/hosts
+192.168.0.30 k8s-master
+192.168.0.31 k8s-node1
+192.168.0.32 k8s-node2
+EOF
+```
+
+
 
 </p>
 </details>
