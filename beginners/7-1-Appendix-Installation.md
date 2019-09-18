@@ -34,7 +34,7 @@ cd /var/lib/libvirt/images
 다운로드! 만약 아래 주소가 없을 경우, 위 <참고 URL>에서 경로 다시 확인하시고 아래 명령어 수정이 필요합니다.
 
 ```sh
-curl http://mirror.kakao.com/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso -O
+curl -O http://mirror.kakao.com/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso 
 ```
 
 ### 2-1-2) Virt-Manager UI 설정
@@ -98,6 +98,7 @@ Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식�
 <참고 URL> https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 
 ### 3-1) Pre-Setting
+Kubernetes를 설치 하기전 구성해 놓아야 할 리눅스 설정 내용입니다. 
 
 <details><summary>show</summary>
 <p>
@@ -155,7 +156,11 @@ EOF
 sysctl --system
 ```
 
-### 3-1-5) 쿠버네티스 YUM 리포지토리 설정
+### 3-1-5) 쿠버네티스 YUM Repository 설정
+
+YUM에 대해서 좀더 상세한 내용이 궁금한 분께서는 아래 싸이트가 잘 정리되어 있는거 같아 링크 첨부했어요.
+<br/>
+<참고 URL> https://www.lesstif.com/display/1STB/yum
 
 ```sh
 cat <<EOF > /etc/yum.repos.d/kubernetes.repo
@@ -192,6 +197,7 @@ EOF
 </details>
 
 ### 3-2) Install 
+진행중
 
 <details><summary>show</summary>
 <p>
@@ -217,6 +223,12 @@ yum install -y docker kubelet kubeadm kubectl --disableexcludes=kubernetes
 
 ```
 
+설치 확인
+
+```sh
+
+```
+
 </p>
 </details>
 
@@ -236,17 +248,23 @@ yum install -y docker kubelet kubeadm kubectl --disableexcludes=kubernetes
 <details><summary>show</summary>
 <p>
 ### 4-2-1) Network 변경하기
+Host의 Ip Address를 변경하기 위해 아래 명령어로 설정을 열고
 
 ```sh
 vi /etc/sysconfig/network-scripts/ifcfg-eth0
+```
+`IPADDR=` 부분을 해당 Node의 IP (192.168.0.31, 192.168.0.32)로 변경해주세요
+그리고 아래 명령어로 네트워크 재시작
+
+```sh
 systemctl restart network
 ```
 
 ### 4-2-2) Host Name 변경
+해당 Node의 Host 이름을 변경해주세요
 
 ```sh
 hostnamectl set-hostname k8s-node1
-hostnamectl set-hostname k8s-node2
 ```
 
 </p>
