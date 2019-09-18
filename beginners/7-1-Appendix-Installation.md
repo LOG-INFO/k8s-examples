@@ -31,7 +31,7 @@ Virt-Manager의 Image 파일 기본 경로로 이동
 cd /var/lib/libvirt/images
 ```
 
-다운로드! 아래 주소가 없을 경우, 위 <참고 URL>에서 다시 확인
+다운로드! 만약 아래 주소가 없을 경우, 위 <참고 URL>에서 경로 다시 확인하시고 아래 명령어 수정이 필요합니다.
 
 ```sh
 curl http://mirror.kakao.com/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso -O
@@ -43,9 +43,8 @@ UI 실행 명령
 ```sh
 virt-manager
 ```
-UI를 통해서 VM 생성
-<br/>
-6번 단계에서 `Host divice eno1`는 자신의 물리 Port 갯수 만큼 생성되는데 선택한 Port로 해당 VM의 트래픽이 나가기 때문에 대역폭 고려 필요
+
+6번 단계에서 `Host divice eno1`는 자신 서버에 물리 Port가 여러게 있을 경우, Port 갯수 만큼 생성되는데 선택한 Port로 해당 VM의 트래픽이 나가기 때문에 여러 VM을 만들때 분산해서 지정하면 좋아요
 
 ```sh
 1. File > New Virtual Machine
