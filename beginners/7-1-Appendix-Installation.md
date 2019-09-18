@@ -170,7 +170,6 @@ EOF
 ```
 
 ### 3-1-6) Centos Update
-계획된 master와 node의 호스트 이름과 IP를 모두 등록해줍니다.
 
 ```sh
 yum update
@@ -197,7 +196,21 @@ EOF
 <details><summary>show</summary>
 <p>
 
-### 3-2-1) Docker, Kubernetes 설치 
+### 3-2-1) Docker 설치 
+
+```sh
+yum install -y yum-utils device-mapper-persistent-data lvm2 docker-ce
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+systemctl enable docker && systemctl start docker
+```
+
+설치 확인
+
+```sh
+docker run hello-world
+```
+
+### 3-2-2) Kubernetes 설치 
 
 ```sh
 yum install -y docker kubelet kubeadm kubectl --disableexcludes=kubernetes
