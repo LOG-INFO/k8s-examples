@@ -12,10 +12,81 @@
 </details>
 
 ## 2) Create VM ( For Master )
-진행중
+
+CentOS 최신 버전 Minimal ISO 버전으로 설치
+<참고 URL>
+https://www.centos.org/download/
+
+### 2-1) Setting VM
 
 <details><summary>show</summary>
 <p>
+
+
+
+### 2-1-1) CentOS 최신버전 다운로드
+Virt-Manager의 Image 파일 기본 경로로 이동
+
+```sh
+cd /var/lib/libvirt/images
+```
+
+다운로드! 아래 주소가 없을 경우, 위 <참고 URL>에서 다시 확인
+
+```sh
+curl http://mirror.kakao.com/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso -O
+```
+
+### 2-1-2) Virt-Manager UI 설정
+UI 실행 명령
+
+```sh
+virt-manager
+```
+UI를 통해서 VM 생성
+<br/>
+6번 단계에서 `Host divice eno1`는 자신의 물리 Port 갯수 만큼 생성되는데 선택한 Port로 해당 VM의 트래픽이 나가기 때문에 대역폭 고려 필요
+
+```sh
+1. File > New Virtual Machine
+2. [step1] Local install media (ISO image or CDROM) 선택 
+3. [step2] Use ISO Image [Browse] 클릭해서 ISO 선택 
+4. [step3] Memory(RAM) : 4096 MiB, CPUs 2로 변경 
+5. [step4] 150 GiB 변경 
+6. [step5] Name : k8s-master, [Network selection]을 Host divice eno1:mactab 선택 후 [Source mode]는 Bridge로 변경
+7. Finish를 누르고 조금 기다리면 CentOS 설치 화면 나옴
+```
+
+</p>
+</details>
+
+### 2-2) Install CentOS
+
+<details><summary>show</summary>
+<p>
+
+### 2-2-1) CentOS 설치
+
+4번 단계에서 `8.8.8.8`는 Google DNS입니다. 원하는 DNS 쓰셔도 되요.
+
+```sh
+1. Test this media & install CentOS 7
+2. Language : 한국어 
+3. Disk 설정 [시스템 > 설치 대상]
+   - [기타 저장소 옵션 > 파티션 설정] 파티션을 설정합니다. [체크] 후 [완료]
+   - 새로운 CentOS 설치 > 여기를 클릭하여 자동으로 생성합니다. [클릭]
+   - /home [클릭] 후 용량 5.12 GiB로 변경 [설정 업데이트 클릭]
+   - / [클릭] 후 140 GiB 변경 후 [설정 업데이트 클릭]
+   - [완료], [변경 사항 적용]
+4. 네트워크 설정 [시스템 > 네트워크 및 호스트명 설정]
+   - 호스트 이름: k8s-master [적용]
+   - 이더넷 [켬], [설정], [IPv4 설정] 탭
+   - 방식: 수동으로 선택, 
+   - [Add] -> 주소: 192.168.0.30, 넷마스크 : 255.255.255.0, 게이트웨이: 192.168.0.1, DNS 서버 : 8.8.8.8 [저장]
+5. 설치시작
+6. [설정 > 사용자 설정] ROOT 암호 설정 
+```
+
 </p>
 </details>
 
