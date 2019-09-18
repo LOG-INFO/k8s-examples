@@ -84,6 +84,7 @@ virt-manager
    - [Add] -> 주소: 192.168.0.30, 넷마스크 : 255.255.255.0, 게이트웨이: 192.168.0.1, DNS 서버 : 8.8.8.8 [저장]
 5. 설치시작
 6. [설정 > 사용자 설정] ROOT 암호 설정 
+7. [재부팅]
 ```
 
 </p>
@@ -103,6 +104,8 @@ Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식�
 
 ### 3-1-1) SELinux 설정
 
+쿠버네티스가 Pod Network에 필요한 호스트 파일 시스템에 액세스가 가능하도록 하기 위해서 필요한 설정입니다.
+<br/>
 아래 설정으로 SELinux을 permissive로 변경해야하고 
 
 ```sh
@@ -114,7 +117,7 @@ setenforce 0
 sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 ```
 
-아래 명령어로 결과 확인
+아래 명령어를 실행해서 `Current mode:permissive` 내용 확인
 
 ```sh
 sestatus
