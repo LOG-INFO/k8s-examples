@@ -265,8 +265,33 @@ yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 
 ### 4-1) Clone VM
 
+
 <details><summary>show</summary>
 <p>
+
+### 4-1-1) 시스템 shutdown
+
+여기까지 만든 이미지를 복사해 놓기 위해서 Master를 잠시 Shutdown 시켜요.
+
+```sh
+shutdown now
+```
+
+### 4-1-2) VM 복사
+
+Physical Server(192.168.0.30)에서 virt-clone 명령을 통해 VM을 복제하세요.
+<br/>
+Node1 VM 생성
+
+```sh
+virt-clone -o k8s-master -n k8s-node1 --auto-clone
+```
+Node2 VM 생성
+
+```sh
+virt-clone -o k8s-master -n k8s-node2 --auto-clone
+```
+
 </p>
 </details>
 
