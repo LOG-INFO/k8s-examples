@@ -81,10 +81,10 @@ virt-manager
    - 호스트 이름: k8s-master [적용]
    - 이더넷 [켬], [설정], [IPv4 설정] 탭
    - 방식: 수동으로 선택, 
-   - [Add] -> 주소: 192.168.0.30, 넷마스크 : 255.255.255.0, 게이트웨이: 192.168.0.1, DNS 서버 : 8.8.8.8 [저장]
+   - [Add] -> 주소: 192.168.0.30, 넷마스크 : 255.255.255.0, 게이트웨이: 192.168.0.1, DNS 서버 : 8.8.8.8 [저장][완료]
 5. 설치시작
 6. [설정 > 사용자 설정] ROOT 암호 설정 
-7. [재부팅]
+7. 설치 완료 후 [재부팅]
 ```
 
 </p>
@@ -125,13 +125,18 @@ sestatus
 ```
 
 
-### 3-1-2) firewalld 비활성화
+### 3-1-2) 방화벽 해제
+
+firewalld 비활성화
 
 ```sh
-systemctl stop firewalld
-systemctl disable firewalld
-systemctl stop NetworkManager
-systemctl disable NetworkManager
+systemctl stop firewalld && systemctl disable firewalld
+```
+
+NetworkManager 비활성화
+
+```sh
+systemctl stop NetworkManager && systemctl disable NetworkManager
 ```
 
 ### 3-1-3) Swap 비활성화
