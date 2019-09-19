@@ -441,7 +441,7 @@ Calico는 기본 192.168.0.0/16 대역으로 설치가 되는데, 그럼  실제
 
 ```sh
 curl -O https://docs.projectcalico.org/v3.9/manifests/calico.yaml
-sed s/192.168.0.0\\/16/2=30.96.0.0\\/12/g -i calico.yaml
+sed s/192.168.0.0\\/16/30.96.0.0\\/16/g -i calico.yaml
 kubectl apply -f calico.yaml
 ```
 
@@ -449,6 +449,12 @@ kubectl apply -f calico.yaml
 
 ```sh
 kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml
+```
+
+calico와 coredns 관련 Pod의 Status가 Running인지 확인 
+
+```sh
+kubectl get pods --all-namespaces
 ```
 
 </p>
