@@ -233,8 +233,6 @@ cat > /etc/docker/daemon.json <<EOF
 EOF
 
 mkdir -p /etc/systemd/system/docker.service.d
-systemctl daemon-reload
-systemctl restart docker
 ```
 
 ### 3-2-2) Kubernetes 설치
@@ -296,7 +294,8 @@ hostnamectl set-hostname k8s-node1
 도커 실행
 
 ```sh
-systemctl enable --now docker
+systemctl daemon-reload
+systemctl restart docker
 ```
 
 아래 명령어를 입력하면 image를 다운받는 내용이 나오면서 중간에  `Hello for Docker!` 가 보이면 설치 확인되면 설치가 잘 된거예요.
