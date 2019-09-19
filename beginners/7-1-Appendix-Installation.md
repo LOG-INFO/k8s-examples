@@ -286,9 +286,6 @@ hostnamectl set-hostname k8s-node1
 
 ## 5) Initialize Master and Join Node
 
-<참고 URL> 
-https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
-
 ### 5-1) Master
 
 <details><summary>show</summary>
