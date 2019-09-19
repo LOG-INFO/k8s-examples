@@ -213,11 +213,21 @@ Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식�
 
 ### 3-2-1) Docker 설치 
 
-도커 설치 전에 필요한 패키지 설치 -> 도커 설치를 위한 저장소 를 설정 -> 도커 패키지 설치 
+도커 설치 전에 필요한 패키지 설치 
 
 ```sh
 yum install -y yum-utils device-mapper-persistent-data lvm2 
+```
+
+ 도커 설치를 위한 저장소 를 설정 
+
+```sh
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+```
+
+도커 패키지 설치 
+
+```sh
 yum update && yum install docker-ce-18.06.2.ce
 ```
 
