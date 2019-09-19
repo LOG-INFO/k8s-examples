@@ -199,15 +199,16 @@ EOF
 ### 3-2) Install 
 Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식싸이트에서 명령어 참고 바래요
 <br/>
-<참고 URL> 
-https://docs.docker.com/install/
+<참고 URL> https://docs.docker.com/install/
+<br/>
+<참고 URL> https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 
 <details><summary>show</summary>
 <p>
 
 ### 3-2-1) Docker 설치 
 
-도커 설치 전에 필요한 패키지 설치 -> 도커 설치를 위한 저장소 를 설정 -> 도커 설치 -> 실행
+도커 설치 전에 필요한 패키지 설치 -> 도커 설치를 위한 저장소 를 설정 -> 도커 패키지 설치 -> 도커 실행 순입니다.
 
 ```sh
 yum install -y yum-utils device-mapper-persistent-data lvm2 
@@ -225,8 +226,8 @@ docker run hello-world
 ### 3-2-2) Kubernetes 설치 
 
 ```sh
-yum install -y docker kubelet kubeadm kubectl --disableexcludes=kubernetes
-
+yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+systemctl enable --now kubelet
 ```
 
 설치 확인
