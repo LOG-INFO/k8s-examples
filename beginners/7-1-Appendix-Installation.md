@@ -197,20 +197,26 @@ EOF
 </details>
 
 ### 3-2) Install 
-진행중
+Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식싸이트에서 명령어 참고 바래요
+<br/>
+<참고 URL> 
+https://docs.docker.com/install/
 
 <details><summary>show</summary>
 <p>
 
 ### 3-2-1) Docker 설치 
 
+도커 설치 전에 필요한 패키지 설치 -> 도커 설치를 위한 저장소 를 설정 -> 도커 설치 -> 실행
+
 ```sh
-yum install -y yum-utils device-mapper-persistent-data lvm2 docker-ce
+yum install -y yum-utils device-mapper-persistent-data lvm2 
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum install docker-ce
 systemctl enable docker && systemctl start docker
 ```
 
-설치 확인
+아래 명령어를 입력하면 image를 다운받는 내용이 나오면서 중간에  `Hello for Docker!` 가 보이면 설치 확인되면 설치가 잘 된거예요.
 
 ```sh
 docker run hello-world
