@@ -181,7 +181,7 @@ yum update
 ```
 
 ### 3-1-7) hosts 등록
-계획된 master와 node의 호스트 이름과 IP를 모두 등록해줍니다.
+계획된 master와 node의 호스트 이름과 IP를 모두 등록해주세요. 안하시면 추후 kubeadm init시 Host이름으로 IP를 찾을 수 없다고 에러가 나요.
 
 ```sh
 cat << EOF >> /etc/hosts
@@ -199,7 +199,7 @@ EOF
 ### 3-2) Install 
 Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식싸이트에서 명령어 참고 바래요
 <br/>
-<참고 URL> https://docs.docker.com/install/
+<참고 URL> https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker
 <br/>
 <참고 URL> https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 
@@ -208,32 +208,38 @@ Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식�
 
 ### 3-2-1) Docker 설치 
 
-도커 설치 전에 필요한 패키지 설치 -> 도커 설치를 위한 저장소 를 설정 -> 도커 패키지 설치 -> 도커 실행 순입니다.
+도커 설치 전에 필요한 패키지 설치 -> 도커 설치를 위한 저장소 를 설정 -> 도커 패키지 설치 
 
 ```sh
 yum install -y yum-utils device-mapper-persistent-data lvm2 
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-sudo yum install docker-ce
-systemctl enable docker && systemctl start docker
+yum update && yum install docker-ce-18.06.2.ce
 ```
-
-아래 명령어를 입력하면 image를 다운받는 내용이 나오면서 중간에  `Hello for Docker!` 가 보이면 설치 확인되면 설치가 잘 된거예요.
 
 ```sh
-docker run hello-world
+mkdir /etc/docker
+cat > /etc/docker/daemon.json <<EOF
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2",
+  "storage-opts": [
+    "overlay2.override_kernel_check=true"
+  ]
+}
+EOF
+mkdir -p /etc/systemd/system/docker.service.d
+systemctl daemon-reload
+systemctl restart docker
 ```
 
-### 3-2-2) Kubernetes 설치 
+### 3-2-2) Kubernetes 설치
 
 ```sh
 yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
-systemctl enable --now kubelet
-```
-
-설치 확인
-
-```sh
-
 ```
 
 </p>
@@ -288,22 +294,44 @@ https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-ku
 <details><summary>show</summary>
 <p>
 
+### 5-1-1) 도커 및 쿠버네티스 실행
+도커 실행
 
-### 5-1-1) 초기화 명령 실행
-`pod-network-cidr` 설명
+```sh
+systemctl enable --now docker
+```
+
+아래 명령어를 입력하면 image를 다운받는 내용이 나오면서 중간에  `Hello for Docker!` 가 보이면 설치 확인되면 설치가 잘 된거예요.
+
+```sh
+docker run hello-world
+```
+
+쿠버네티스 실행
+
+```sh
+systemctl enable --now kubelet
+```
+
+
+### 5-1-2) 쿠버네티스 초기화 명령 실행
+
+kubeadm init 명령관련 해서 상세 내용이 궁금하신 분은 아래 싸이트 참고하세요.
+<참고 URL> https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/
 <br/>
-`apiserver-advertise-address` 설명
-<br/>
+`pod-network-cidr` 를 설정하면 Pod의 IP가 자동으로 생성될때 해당 network으로 생성되요
+
+
+```sh
+kubeadm init --pod-network-cidr=20.96.0.0/12
+```
+
 실행 후 `[Your Kubernetes master has initialized successfully!]` 문구를 확인하고 아래 내용 복사해서 별도로 저장해 둡니다. 
 <br/>
 kubeadm join 192.168.0.30:6443 --token ki4szr.t3wondaclij6d1a3 \
     --discovery-token-ca-cert-hash sha256:2370f0451342c6e4bd0d38f6c2511bda5c50374c85e9c09da28e12dd666d5987
-
-```sh
-kubeadm init --pod-network-cidr=10.16.0.0/16 --apiserver-advertise-address=192.168.0.30
-```
-
-### 5-1-2) 환경변수 설정
+    
+### 5-1-3) 환경변수 설정
 root 계정을 이용해서 kubectl을 실행하기 위한 환경 변수를 설정
 
 ```sh
@@ -312,7 +340,7 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-### 5-1-3) kubectl 자동완성 기능 설치
+### 5-1-4) kubectl 자동완성 기능 설치
 kubectl 사용시 [tab] 버튼을 이용해서 다음에 올 명령어 리스트를 조회 할 수 있어요.
 <br/>
 명령 실행 후 바로 적용이 안되기 때문에 접속을 끊고 다시 연결 후에 사용 가능합니다. 
@@ -377,7 +405,7 @@ Calico는 기본 192.168.0.0/16 대역으로 설치가 되는데, 그럼  실제
 ```sh
 yum install wget
 wget https://docs.projectcalico.org/v3.9/manifests/calico.yaml
-sed s/192.168.0.0\\/16/10.16.0.0\\/16/g -i calico.yaml
+sed s/192.168.0.0\\/16/2=30.96.0.0\\/12/g -i calico.yaml
 kubectl apply -f calico.yaml
 ```
 
