@@ -66,15 +66,64 @@ USB를 설치할 서버에 꼽고 부팅하면 CentOS 설치단계로 가져요.
 
 
 ### 1-2) Install Virt-Manager
-https://www.linuxtechi.com/install-kvm-hypervisor-on-centos-7-and-rhel-7/
+
 
 <details><summary>show</summary>
 <p>
-   
-   
 
-   
-   
+### 1-2-1) 원격접속 툴 MobaXterm 설치
+
+Virt-Manager의 UI 툴을 띄우기 위해서 MobaXterm 원격접속 툴을 사용하셔야 되요
+
+https://mobaxterm.mobatek.net/
+```sh
+- [GET MOBAXTERM NOW] 버튼 클릭
+- Free 버전 [Download now]
+- Portable editon 다운로드 및 실행
+- Sessions > SSH > Remote host : 192.168.0.20 [ok]
+```
+
+
+### 1-2-2) Virt-Manager 설치
+
+아래 경로에 Virt-Manager 설치에 대해서 잘 정리되어 있어요.
+<br/>
+https://www.linuxtechi.com/install-kvm-hypervisor-on-centos-7-and-rhel-7/
+<br/>
+
+현재 서버가 가상화 가능한 서버인지 확인
+```sh
+grep -E '(vmx|svm)' /proc/cpuinfo
+```
+실행 결과에 vmx 나 svm이 나오면 됩니다.
+
+<br/>
+설치 후 yum update는 기본
+
+```sh
+yum update 
+```
+
+virt-manager 패키지 
+```sh
+yum install qemu-kvm qemu-img virt-manager libvirt libvirt-python libvirt-client virt-install virt-viewer bridge-utils   
+```
+
+virt-manager 구동
+```sh
+systemctl start libvirtd && systemctl enable libvirtd
+```
+
+virt-manager UI를 띄우기 위해 X Window System 및 폰트 설치
+```sh
+yum groupinstall "X Window System" "Fonts"
+```
+
+virt-manager 실행
+```sh
+virt-manager
+```
+
 </p>
 </details>
 
