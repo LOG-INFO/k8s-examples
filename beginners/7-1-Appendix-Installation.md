@@ -6,10 +6,76 @@
 ## 1) Setting Physical Server
 진행중
 
+### 1-1) Install CentOS
+
 <details><summary>show</summary>
 <p>
+   
+
+### 1-1-1) CentOS 다운로드
+
+아래 경로에서 Minimal ISO 로 들어가서 원하는 경로에서 파일 다운로드
+https://www.centos.org/download/
+
+
+### 1-1-2) Booting USB 만들기
+
+아래 경로로 들어가면 중간 정도에 다운로드 버튼 있어요. 
+<br/>
+https://rufus.ie/ko_KR.html
+<br/>
+다운로드 후 실행
+
+```sh 
+- 장치 : USB 선택
+- 부트 선택 : 디스크 또는 ISO 이미지 [선택] 클릭 후 다운받은 파일 지정
+- [시작]
+``` 
+
+### 1-1-3) CentOS 
+
+USB를 설치할 서버에 꼽고 부팅하면 CentOS 설치단계로 가져요.
+<br/>
+안되시는 분은 부팅 순서를 USB로 변경하셔야 됩니다.
+<br/>
+4번 단계에서 `8.8.8.8`는 Google DNS입니다. 원하는 DNS 쓰셔도 되요.
+
+```sh
+1. Test this media & install CentOS 7
+2. Language : 한국어 
+3. Disk 설정 [시스템 > 설치 대상]
+   - [기타 저장소 옵션 > 파티션 설정] 파티션을 설정합니다. [체크] 후 [완료]
+   - 새로운 CentOS 설치 > 여기를 클릭하여 자동으로 생성합니다. [클릭]
+   - /home [클릭] 후 용량 5.12 GiB로 변경 [설정 업데이트 클릭]
+   - / [클릭] 후 140 GiB 변경 후 [설정 업데이트 클릭]
+   - [완료], [변경 사항 적용]
+4. 네트워크 설정 [시스템 > 네트워크 및 호스트명 설정]
+   - 호스트 이름: k8s-master [적용]
+   - 이더넷 [켬], [설정], [IPv4 설정] 탭
+   - 방식: 수동으로 선택, 
+   - [Add] -> 주소: 192.168.0.30, 넷마스크 : 255.255.255.0, 게이트웨이: 192.168.0.1, DNS 서버 : 8.8.8.8 [저장][완료]
+5. 설치시작
+6. [설정 > 사용자 설정] ROOT 암호 설정 
+7. 설치 완료 후 [재부팅]
+```
+
 </p>
 </details>
+
+
+### 1-2) Install Virt-Manager
+https://www.linuxtechi.com/install-kvm-hypervisor-on-centos-7-and-rhel-7/
+
+<details><summary>show</summary>
+<p>
+   
+   
+
+   
+   
+</p>
+</details>
+
 
 ## 2) Create VM ( For Master )
 
