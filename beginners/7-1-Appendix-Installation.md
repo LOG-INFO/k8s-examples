@@ -406,15 +406,16 @@ echo "source <(kubectl completion bash)" >> ~/.bashrc
 <details><summary>show</summary>
 <p>
 
-### 5-2-1) IP 관련 설정
-설명
+### 5-2-1) 도커 및 쿠버네티스 실행
+도커 실행
 
 ```sh
-echo 1 > /proc/sys/net/ipv4/ip_forward
+systemctl daemon-reload
+systemctl enable --now docker
 ```
 
 ### 5-2-2) Node 연결
-Master Init 후 복사 내용 붙여넣기
+Master Init 후 복사 했었던 내용 붙여넣기
 
 ```sh
 kubeadm join 192.168.0.30:6443 --token 7xd747.bfouwf64kz437sqs \
