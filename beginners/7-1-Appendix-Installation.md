@@ -100,8 +100,6 @@ virt-manager
 
 ### 3-1) Pre-Setting
 
-Kubernetes를 설치 하기전 구성해 놓아야 할 리눅스 설정 내용입니다. 
-
 
 <details><summary>show</summary>
 <p>
