@@ -13,8 +13,6 @@
 
 ## 2) Create VM ( For Master )
 
-CentOS 최신 버전 Minimal ISO 버전으로 설치
-
 ### 2-1) Setting VM
 
 <details><summary>show</summary>
@@ -28,7 +26,7 @@ Virt-Manager의 Image 파일 기본 경로로 이동
 ```sh
 cd /var/lib/libvirt/images
 ```
-다운로드! 
+Minimal ISO 버전 다운로드 
 <br/>
 만약 다운로드 받은 파일 크기가 매우 작다면 해당 경로에 파일이 없는 것이니, 아래 URL에서 [Minimal ISO]를 선택하고 원하는 경로로 변경하세요.
 <br/>
