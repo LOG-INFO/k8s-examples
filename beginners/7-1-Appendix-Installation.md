@@ -52,13 +52,13 @@ virt-manager
 6번 단계에서 `Host divice eno1`는 자신 서버에 물리 Port가 여러게 있을 경우, Port 갯수 만큼 생성되는데 선택한 Port로 해당 VM의 트래픽이 나가기 때문에 여러 VM을 만들때 분산해서 지정하면 좋아요
 
 ```sh
-1. File > New Virtual Machine
-2. [step1] Local install media (ISO image or CDROM) 선택 
-3. [step2] Use ISO Image [Browse] 클릭해서 ISO 선택 
-4. [step3] Memory(RAM) : 4096 MiB, CPUs 2로 변경 
-5. [step4] 150 GiB 변경 
-6. [step5] Name : k8s-master, [Network selection]을 Host divice eno1:mactab 선택 후 [Source mode]는 Bridge로 변경
-7. Finish를 누르고 조금 기다리면 CentOS 설치 화면 나옴
+1. 파일 > 새 가상 머신
+2. [1단계] 로컬 설치 매체(ISO 이미지나 CDROM)선택 
+3. [2단계] ISO 이미지 사용 [검색] 클릭해서 ISO 선택 
+4. [3단계] 메모리(RAM) : 4096 MiB, CPU들 2로 변경 
+5. [4단계] 150 GiB 변경 
+6. [5단계] 이름 : k8s-master, 네트워크 선택을 [호스트 장치 enp2s0:macvtap] 선택 후 소스 모드는 [브릿지]확인
+7. [완료]를 누르고 조금 기다리면 CentOS 설치 화면 나옴
 ```
 
 </p>
