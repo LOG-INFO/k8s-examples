@@ -289,11 +289,6 @@ Node1 VM 생성
 ```sh
 virt-clone -o k8s-master -n k8s-node1 --auto-clone
 ```
-Node2 VM 생성
-
-```sh
-virt-clone -o k8s-master -n k8s-node2 --auto-clone
-```
 
 </p>
 </details>
@@ -308,7 +303,16 @@ Host의 Ip Address를 변경하기 위해 아래 명령어로 설정을 열고
 ```sh
 vi /etc/sysconfig/network-scripts/ifcfg-eth0
 ```
-`IPADDR=` 부분을 해당 Node의 IP (192.168.0.31, 192.168.0.32)로 변경해주세요
+`IPADDR=` 부분을 해당 Node의 IP (192.168.0.31)로 변경해주세요
+
+```sh
+...
+DEVICE="etho0"
+ONBOOT="yes"
+IPADDR="192.168.0.31"
+...
+```
+
 그리고 아래 명령어로 네트워크 재시작
 
 ```sh
@@ -321,6 +325,8 @@ systemctl restart network
 ```sh
 hostnamectl set-hostname k8s-node1
 ```
+
+이와 같은 방식으로 k8s-node2(192.168.0.32) 도 새 VM을 만듭니다.
 
 </p>
 </details>
