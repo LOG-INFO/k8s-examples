@@ -98,12 +98,15 @@ virt-manager
 
 ## 3) Docker, Kubernetes Installation
 
-Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식싸이트에서 명령어 참고 바래요
-<br/>
-<참고 URL> https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
-
 ### 3-1) Pre-Setting
+
 Kubernetes를 설치 하기전 구성해 놓아야 할 리눅스 설정 내용입니다. 
+<br/>
+Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 경로에서 명령어 참고 바래요
+<br/>
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+<br/>
+https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker
 
 <details><summary>show</summary>
 <p>
@@ -207,11 +210,6 @@ EOF
 </details>
 
 ### 3-2) Install 
-Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 공식싸이트에서 명령어 참고 바래요
-<br/>
-<참고 URL> https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker
-<br/>
-<참고 URL> https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 
 <details><summary>show</summary>
 <p>
