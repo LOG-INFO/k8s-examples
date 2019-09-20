@@ -4,7 +4,6 @@
 
 
 ## 1) Setting Physical Server
-진행중
 
 ### 1-1) Install CentOS
 
