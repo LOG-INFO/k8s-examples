@@ -14,8 +14,6 @@
 ## 2) Create VM ( For Master )
 
 CentOS 최신 버전 Minimal ISO 버전으로 설치
-<참고 URL>
-https://www.centos.org/download/
 
 ### 2-1) Setting VM
 
@@ -30,11 +28,20 @@ Virt-Manager의 Image 파일 기본 경로로 이동
 ```sh
 cd /var/lib/libvirt/images
 ```
-
-다운로드! 만약 아래 주소가 없을 경우, 위 <참고 URL>에서 경로 다시 확인하시고 아래 명령어 수정이 필요합니다.
+다운로드! 
+<br/>
+만약 다운로드 받은 파일 크기가 매우 작다면 해당 경로에 파일이 없는 것이니, 아래 URL에서 [Minimal ISO]를 선택하고 원하는 경로로 변경하세요.
+<br/>
+https://www.centos.org/download/
 
 ```sh
 curl -O http://mirror.kakao.com/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso 
+```
+
+파일 크기 확인
+
+```sh
+ls -al 
 ```
 
 ### 2-1-2) Virt-Manager UI 설정
