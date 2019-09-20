@@ -101,18 +101,20 @@ virt-manager
 ### 3-1) Pre-Setting
 
 Kubernetes를 설치 하기전 구성해 놓아야 할 리눅스 설정 내용입니다. 
-<br/>
-Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 경로에서 명령어 참고 바래요
-<br/>
-https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
-<br/>
-https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker
+
 
 <details><summary>show</summary>
 <p>
 
 ### 3-1-1) SELinux 설정
 
+
+Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 경로에서 명령어 참고 바래요
+<br/>
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+<br/>
+https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker
+<br/>
 쿠버네티스가 Pod Network에 필요한 호스트 파일 시스템에 액세스가 가능하도록 하기 위해서 필요한 설정이예요
 <br/>
 아래 설정으로 SELinux을 permissive로 변경해야하고 
@@ -449,17 +451,18 @@ kubectl get nodes
 
 ### 6-1) Networking
 
-Kubernetes Cluster Networking에는 많은 Plugin들이 있는데 그중 Calico 설치에 대한 내용 입니다.
-<br/>
-<참고 URL> https://kubernetes.io/docs/concepts/cluster-administration/networking/
-<br/>
-<참고 URL> https://docs.projectcalico.org/v3.9/getting-started/kubernetes/
-
 <details><summary>show</summary>
 <p>
 
 
 ### 6-1-1) Calico 설치
+
+Kubernetes Cluster Networking에는 많은 Plugin들이 있는데 그중 Calico 설치에 대한 내용 입니다.
+<br/>
+https://kubernetes.io/docs/concepts/cluster-administration/networking/
+<br/>
+https://docs.projectcalico.org/v3.9/getting-started/kubernetes/
+<br/>
 Calico는 기본 192.168.0.0/16 대역으로 설치가 되는데, 그럼  실제 VM이 사용하고 있는 대역대와 겹치기 때문에 수정을 해서 설치해야 할 경우
 
 ```sh
