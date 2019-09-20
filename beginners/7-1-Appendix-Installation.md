@@ -407,11 +407,18 @@ echo "source <(kubectl completion bash)" >> ~/.bashrc
 <p>
 
 ### 5-2-1) 도커 및 쿠버네티스 실행
+
 도커 실행
 
 ```sh
 systemctl daemon-reload
 systemctl enable --now docker
+```
+
+쿠버네티스 실행
+
+```sh
+systemctl enable --now kubelet
 ```
 
 ### 5-2-2) Node 연결
