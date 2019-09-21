@@ -134,7 +134,8 @@ virt-manager
 </details>
 
 
-## 2) Create VM ( For Master )
+![2-create-vm](./2-create-vm.JPG)
+
 
 ### 2-1) Setting VM
 
