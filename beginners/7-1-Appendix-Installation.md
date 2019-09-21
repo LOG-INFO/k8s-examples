@@ -78,7 +78,7 @@ https://mobaxterm.mobatek.net/
 ```sh
 - [GET MOBAXTERM NOW] 버튼 클릭
 - Free 버전 [Download now]
-- Portable editon 다운로드 및 실행
+- Installer editon 다운로드 및 실행
 - Sessions > SSH > Remote host : 192.168.0.20 [ok]
 ```
 
