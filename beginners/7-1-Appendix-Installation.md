@@ -7,7 +7,7 @@
 # 7-1. Appendix. Kubernetes Installation
 
 ![install-1](./images/install-1.jpg)
-### 1-1) Install CentOS
+## 1-1) Install CentOS
 
 <details><summary>show</summary>
 <p>
@@ -66,7 +66,7 @@ USB를 설치할 서버에 꼽고 부팅하면 CentOS 설치단계로 가져요.
 </details>
 
 
-### 1-2) Install Virt-Manager
+## 1-2) Install Virt-Manager
 
 
 <details><summary>show</summary>
