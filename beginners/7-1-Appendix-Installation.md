@@ -220,7 +220,9 @@ virt-manager
 
 <br/>
 <br/>
+
 ![install-3](./images/install-3.jpg)
+
 ### 3-1) Pre-Setting
 
 
@@ -389,7 +391,9 @@ yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 
 <br/>
 <br/>
+
 ![install-4](./images/install-4.jpg)
+
 ### 4-1) Clone VM
 
 
@@ -457,7 +461,9 @@ hostnamectl set-hostname k8s-node1
 
 <br/>
 <br/>
+
 ![install-5](./images/install-5.jpg)
+
 ### 5-1) Master
 
 <details><summary>show</summary>
@@ -571,7 +577,9 @@ kubectl get nodes
 
 <br/>
 <br/>
+
 ![install-6](./images/install-6.jpg)
+
 ### 6-1) Networking
 
 <details><summary>show</summary>
