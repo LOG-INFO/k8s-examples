@@ -596,14 +596,8 @@ Calico는 기본 192.168.0.0/16 대역으로 설치가 되는데, 그럼  실제
 
 ```sh
 curl -O https://docs.projectcalico.org/v3.9/manifests/calico.yaml
-sed s/192.168.0.0\\/16/30.96.0.0\\/12/g -i calico.yaml
+sed s/192.168.0.0\\/16/20.96.0.0\\/12/g -i calico.yaml
 kubectl apply -f calico.yaml
-```
-
-기본 대역으로 사용해도 문제 없을 경우 아래 명령 사용
-
-```sh
-kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml
 ```
 
 calico와 coredns 관련 Pod의 Status가 Running인지 확인 
@@ -617,7 +611,6 @@ kubectl get pods --all-namespaces
 
 ## 6-2) Dashboard
 
-새 버전에서는 Dashboard 설정이 변경됐네요 ㅠ
 작업중입니다.
 
 
@@ -631,7 +624,7 @@ Dashboard도 버전이 계속 업데이트 되기 때문에 아래 경로에서 
 >https://github.com/kubernetes/dashboard
 
 ```sh
-
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
 ```
 
 
@@ -640,6 +633,7 @@ Dashboard도 버전이 계속 업데이트 되기 때문에 아래 경로에서 
 
 ```sh
 nohup kubectl proxy --port=8001 --address=192.168.0.30 --accept-hosts='^*$' >/dev/null 2>&1 &
+nohup kubectl proxy >/dev/null 2>&1 &
 ```
 
 ### 6-2-5) 접속 URL 
