@@ -1,4 +1,8 @@
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+
+![kubernetes](https://github.com/taemin77/k8s-examples/blob/master/github.JPG)
+
+바로가기 : 
+https://www.inflearn.com/course/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EA%B8%B0%EC%B4%88#
 
 # 5-1. Object-Pod (Practice)
 
