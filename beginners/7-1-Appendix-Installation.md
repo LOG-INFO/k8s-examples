@@ -1,5 +1,5 @@
 
-![kubernetes](./../../github.JPG)
+![kubernetes](https://github.com/taemin77/k8s-examples/blob/master/github.JPG)
 
 # 7-1. Appendix. Kubernetes Installation
 
