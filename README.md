@@ -1,2 +1,2 @@
-# k8s-examples
-Kubernetes Lecture Examples
+# Kubernetes-examples
+![kubernetes](./github.jpg)
