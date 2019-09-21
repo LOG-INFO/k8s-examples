@@ -133,7 +133,9 @@ virt-manager
 
 <br/>
 <br/>
+
 ![install-2](./images/install-2.jpg)
+
 ### 2-1) Setting VM
 
 <details><summary>show</summary>
