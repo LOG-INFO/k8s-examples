@@ -591,7 +591,6 @@ kubectl get nodes
 Kubernetes Cluster Networking에는 많은 Plugin들이 있는데 그중 Calico 설치에 대한 내용 입니다.
 <br/>
 >https://kubernetes.io/docs/concepts/cluster-administration/networking/
-<br/>
 >https://docs.projectcalico.org/v3.9/getting-started/kubernetes/
 <br/>
 Calico는 기본 192.168.0.0/16 대역으로 설치가 되는데, 그럼  실제 VM이 사용하고 있는 대역대와 겹치기 때문에 수정을 해서 설치해야 할 경우
