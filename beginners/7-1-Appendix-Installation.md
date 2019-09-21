@@ -83,7 +83,10 @@ https://mobaxterm.mobatek.net/
 - [GET MOBAXTERM NOW] 버튼 클릭
 - Free 버전 [Download now]
 - Installer editon 다운로드 및 실행
-- Sessions > SSH > Remote host : 192.168.0.20 [ok]
+- Sessions > SSH > Remote host : 192.168.0.20 > [Bookmark settings] Session name : host-192.168.0.20 > [ok]
+- Sessions > SSH > Remote host : 192.168.0.30 > [Bookmark settings] Session name : master-192.168.0.30 > [ok]
+- Sessions > SSH > Remote host : 192.168.0.31 > [Bookmark settings] Session name : node1-192.168.0.31 > [ok]
+- Sessions > SSH > Remote host : 192.168.0.32 > [Bookmark settings] Session name : node2-192.168.0.32 > [ok]
 ```
 
 
