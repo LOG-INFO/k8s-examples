@@ -7,8 +7,6 @@
 # 7-1. Appendix. Kubernetes Installation
 
 ![install-1](./images/install-1.jpg)
-## 1) Setting Physical Server
-
 ### 1-1) Install CentOS
 
 <details><summary>show</summary>
@@ -133,10 +131,9 @@ virt-manager
 </p>
 </details>
 
-
+<br/>
+<br/>
 ![install-2](./images/install-2.jpg)
-
-
 ### 2-1) Setting VM
 
 <details><summary>show</summary>
@@ -219,9 +216,9 @@ virt-manager
 </p>
 </details>
 
-
-## 3) Docker, Kubernetes Installation
-
+<br/>
+<br/>
+![install-3](./images/install-3.jpg)
 ### 3-1) Pre-Setting
 
 
@@ -388,8 +385,9 @@ yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 
 
 
-## 4) Clone VM ( For Node )
-
+<br/>
+<br/>
+![install-4](./images/install-4.jpg)
 ### 4-1) Clone VM
 
 
@@ -455,9 +453,9 @@ hostnamectl set-hostname k8s-node1
 </p>
 </details>
 
-
-## 5) Initialize Master and Join Node
-
+<br/>
+<br/>
+![install-5](./images/install-5.jpg)
 ### 5-1) Master
 
 <details><summary>show</summary>
@@ -569,8 +567,9 @@ kubectl get nodes
 </p>
 </details>
 
-## 6) Add Plugin
-
+<br/>
+<br/>
+![install-6](./images/install-6.jpg)
 ### 6-1) Networking
 
 <details><summary>show</summary>
