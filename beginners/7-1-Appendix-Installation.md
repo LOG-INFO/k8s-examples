@@ -19,7 +19,7 @@ https://www.inflearn.com/course/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%E
 
 아래 경로에서 Minimal ISO 로 들어가서 원하는 경로에서 파일 다운로드
 <br/>
-https://www.centos.org/download/
+>https://www.centos.org/download/
 
 
 ### 1-1-2) Booting USB 만들기
