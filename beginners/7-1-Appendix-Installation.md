@@ -136,7 +136,7 @@ virt-manager
 
 ![install-2](./images/install-2.jpg)
 
-### 2-1) Setting VM
+## 2-1) Setting VM
 
 <details><summary>show</summary>
 <p>
@@ -187,7 +187,7 @@ virt-manager
 </p>
 </details>
 
-### 2-2) Install CentOS
+## 2-2) Install CentOS
 
 <details><summary>show</summary>
 <p>
@@ -223,7 +223,7 @@ virt-manager
 
 ![install-3](./images/install-3.jpg)
 
-### 3-1) Pre-Setting
+## 3-1) Pre-Setting
 
 
 <details><summary>show</summary>
@@ -334,7 +334,7 @@ EOF
 </p>
 </details>
 
-### 3-2) Install 
+## 3-2) Install 
 
 <details><summary>show</summary>
 <p>
@@ -394,7 +394,7 @@ yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 
 ![install-4](./images/install-4.jpg)
 
-### 4-1) Clone VM
+## 4-1) Clone VM
 
 
 <details><summary>show</summary>
@@ -421,7 +421,7 @@ virt-clone -o k8s-master -n k8s-node1 --auto-clone
 </p>
 </details>
 
-### 4-2) Config Node
+## 4-2) Config Node
 
 <details><summary>show</summary>
 <p>
@@ -464,7 +464,7 @@ hostnamectl set-hostname k8s-node1
 
 ![install-5](./images/install-5.jpg)
 
-### 5-1) Master
+## 5-1) Master
 
 <details><summary>show</summary>
 <p>
@@ -534,7 +534,7 @@ echo "source <(kubectl completion bash)" >> ~/.bashrc
 </details>
 
 
-### 5-2) Node
+## 5-2) Node
 
 <details><summary>show</summary>
 <p>
@@ -580,7 +580,7 @@ kubectl get nodes
 
 ![install-6](./images/install-6.jpg)
 
-### 6-1) Networking
+## 6-1) Networking
 
 <details><summary>show</summary>
 <p>
@@ -617,7 +617,7 @@ kubectl get pods --all-namespaces
 </p>
 </details>
 
-### 6-2) Dashboard
+## 6-2) Dashboard
 
 새 버전에서는 Dashboard 설정이 변경됐네요 ㅠ
 작업중입니다.
