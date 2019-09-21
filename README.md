@@ -1,2 +1,2 @@
 # Kubernetes-examples
-![kubernetes](./github.jpg)
+![kubernetes](./github.JPG)
