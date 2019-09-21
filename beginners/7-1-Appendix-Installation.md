@@ -26,7 +26,7 @@ https://www.inflearn.com/course/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%E
 
 아래 경로로 들어가면 중간 정도에 다운로드 버튼 있어요. 
 <br/>
-https://rufus.ie/ko_KR.html
+>https://rufus.ie/ko_KR.html
 <br/>
 다운로드 후 실행
 
@@ -78,7 +78,7 @@ USB를 설치할 서버에 꼽고 부팅하면 CentOS 설치단계로 가져요.
 
 Virt-Manager의 UI 툴을 띄우기 위해서 MobaXterm 원격접속 툴을 사용하셔야 되요
 
-https://mobaxterm.mobatek.net/
+>https://mobaxterm.mobatek.net/
 ```sh
 - [GET MOBAXTERM NOW] 버튼 클릭
 - Free 버전 [Download now]
@@ -94,7 +94,7 @@ https://mobaxterm.mobatek.net/
 
 아래 경로에 Virt-Manager 설치에 대해서 잘 정리되어 있어요.
 <br/>
-https://www.linuxtechi.com/install-kvm-hypervisor-on-centos-7-and-rhel-7/
+>https://www.linuxtechi.com/install-kvm-hypervisor-on-centos-7-and-rhel-7/
 <br/>
 
 현재 서버가 가상화 가능한 서버인지 확인
@@ -153,7 +153,7 @@ Minimal ISO 버전 다운로드
 <br/>
 만약 다운로드 받은 파일 크기가 매우 작다면 해당 경로에 파일이 없는 것이니, 아래 URL에서 [Minimal ISO]를 선택하고 원하는 경로로 변경하세요.
 <br/>
-https://www.centos.org/download/
+>https://www.centos.org/download/
 
 ```sh
 curl -O http://mirror.kakao.com/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso 
@@ -232,9 +232,9 @@ virt-manager
 
 Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 경로에서 명령어 참고 바래요
 <br/>
-https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+>https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 <br/>
-https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker
+>https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker
 <br/>
 쿠버네티스가 Pod Network에 필요한 호스트 파일 시스템에 액세스가 가능하도록 하기 위해서 필요한 설정이예요
 <br/>
@@ -273,7 +273,7 @@ systemctl stop NetworkManager && systemctl disable NetworkManager
 ### 3-1-3) Swap 비활성화
 Swap 사용에 관련해서는 많은 의견이 있어요.
 <br/>
-<참고 URL> https://github.com/kubernetes/kubernetes/issues/53533
+>https://github.com/kubernetes/kubernetes/issues/53533
 <br/>
 위 내용을 참고하셔서 swap 사용시의 고려해야할 점을 확인하시고 일단 여기선 사용하지 않도록 설정할께요.
 
@@ -296,7 +296,7 @@ sysctl --system
 
 YUM에 대해서 좀더 상세한 내용이 궁금한 분께서는 아래 싸이트가 잘 정리되어 있는거 같아 링크 첨부했어요.
 <br/>
-<참고 URL> https://www.lesstif.com/display/1STB/yum
+>https://www.lesstif.com/display/1STB/yum
 
 ```sh
 cat <<EOF > /etc/yum.repos.d/kubernetes.repo
@@ -489,7 +489,7 @@ systemctl enable --now kubelet
 ### 5-1-2) 쿠버네티스 초기화 명령 실행
 
 kubeadm init 명령관련 해서 상세 내용이 궁금하신 분은 아래 싸이트 참고하세요.
-<참고 URL> https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/
+>https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/
 <br/>
 `pod-network-cidr` 를 설정하면 Pod의 IP가 자동으로 생성될때 해당 network으로 생성되요
 
@@ -580,9 +580,9 @@ kubectl get nodes
 
 Kubernetes Cluster Networking에는 많은 Plugin들이 있는데 그중 Calico 설치에 대한 내용 입니다.
 <br/>
-https://kubernetes.io/docs/concepts/cluster-administration/networking/
+>https://kubernetes.io/docs/concepts/cluster-administration/networking/
 <br/>
-https://docs.projectcalico.org/v3.9/getting-started/kubernetes/
+>https://docs.projectcalico.org/v3.9/getting-started/kubernetes/
 <br/>
 Calico는 기본 192.168.0.0/16 대역으로 설치가 되는데, 그럼  실제 VM이 사용하고 있는 대역대와 겹치기 때문에 수정을 해서 설치해야 할 경우
 
@@ -620,7 +620,7 @@ kubectl get pods --all-namespaces
 
 Dashboard도 버전이 계속 업데이트 되기 때문에 아래 경로에서 명령어 확인
 <br/>
-https://github.com/kubernetes/dashboard
+>https://github.com/kubernetes/dashboard
 
 ```sh
 
