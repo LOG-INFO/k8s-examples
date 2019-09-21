@@ -6,7 +6,7 @@
 
 # 7-1. Appendix. Kubernetes Installation
 
-![install-1](./images/install-1.JPG)
+![install-1](./images/install-1.jpg)
 ## 1) Setting Physical Server
 
 ### 1-1) Install CentOS
@@ -134,7 +134,7 @@ virt-manager
 </details>
 
 
-![install-2](./images/install-2.JPG)
+![install-2](./images/install-2.jpg)
 
 
 ### 2-1) Setting VM
