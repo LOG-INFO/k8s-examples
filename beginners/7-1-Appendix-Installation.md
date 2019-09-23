@@ -630,11 +630,13 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-b
 
 접속시 인증 Skip 설정
 <br/>
+아래 명령을 통해 수정 모드로 들어가서
 
 ```sh
 kubectl -n kubernetes-dashboard edit deployments.apps kubernetes-dashboard
 ```
-수정 모드로 들어가서 아래와 같이 `--enable-skip-login` 추가 
+
+ 아래 내용 찾아서 `--enable-skip-login` 추가 
 
 ```sh
 -------------------------------
