@@ -611,35 +611,81 @@ kubectl get pods --all-namespaces
 
 ## 6-2) Dashboard
 
-작업중입니다.
-
 
 <details><summary>show</summary>
 <p>
 
-### 6-2-1) Dashboard 설치
+### 6-2-1) Dashboard 설치 
 
-Dashboard도 버전이 계속 업데이트 되기 때문에 아래 경로에서 명령어 확인
+v2.0.0-beta4 버전을 설치합니다. 해당 설정은 교육목적으로 권한 설정을 모두 해제하는 방법이기 때문에 프로젝트에서 사용하실때는 이점 유의바래요
 <br/>
->https://github.com/kubernetes/dashboard
+>https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
+
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta4/aio/deploy/recommended.yaml
+```
+
+### 6-2-2) 권한 해지 설정 
+
+접속시 인증 Skip 설정
+<br/>
+
+```sh
+kubectl -n kubernetes-dashboard edit deployments.apps kubernetes-dashboard
+```
+수정 모드로 들어가서 아래와 같이 `--enable-skip-login` 추가 
+
+```sh
+-------------------------------
+    spec:
+      containers:
+      - args:
+        - --auto-generate-certificates
+        - --enable-skip-login
+-------------------------------
+```
+
+Dashboard의 ClusterRole 내용을 지우고
+
+```sh
+cat <<EOF | kubectl delete -f -
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kubernetes-dashboard
+EOF	
+```
+
+모든 권한으로 리소스에 접근할 수 있도록 ClusterRole 새로 추가
+
+```sh
+cat <<EOF | kubectl create -f -
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: kubernetes-dashboard
+rules:
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["*"]
+EOF	
 ```
 
 
-### 6-2-4) 백그라운드로 proxy 띄우기	
+### 6-2-3) 백그라운드로 proxy 띄우기	
 `--address`에 자신의 Host IP 입력 
 
 ```sh
 nohup kubectl proxy --port=8001 --address=192.168.0.30 --accept-hosts='^*$' >/dev/null 2>&1 &
-nohup kubectl proxy >/dev/null 2>&1 &
 ```
 
-### 6-2-5) 접속 URL 
+### 6-2-4) 접속 URL 
 
 ```sh
-http://192.168.0.30:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/.
+http://192.168.0.30:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/.
 ```
 
 </p>
