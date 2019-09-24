@@ -60,6 +60,7 @@ USB를 설치할 서버에 꼽고 부팅하면 CentOS 설치단계로 가져요.
 5. 설치시작
 6. [설정 > 사용자 설정] ROOT 암호 설정 
 7. 설치 완료 후 [재부팅]
+   (재부팅 시에는 USB 빼는거 잊지 마세요)
 ```
 
 </p>
@@ -77,6 +78,7 @@ USB를 설치할 서버에 꼽고 부팅하면 CentOS 설치단계로 가져요.
 Virt-Manager의 UI 툴을 띄우기 위해서 MobaXterm 원격접속 툴을 사용하셔야 되요
 
 >https://mobaxterm.mobatek.net/
+
 ```sh
 - [GET MOBAXTERM NOW] 버튼 클릭
 - Free 버전 [Download now]
@@ -123,7 +125,9 @@ virt-manager UI를 띄우기 위해 X Window System 및 폰트 설치
 yum groupinstall "X Window System" "Fonts"
 ```
 
-virt-manager 실행
+virt-manager 실행 
+<br/>
+만약 UI가 뜨지 않으면 재접속 후 다시 실행
 ```sh
 virt-manager
 ```
