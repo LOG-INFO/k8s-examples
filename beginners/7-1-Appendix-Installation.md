@@ -238,9 +238,9 @@ virt-manager
 
 Ubuntu나 Debian등 다른 OS를 설치하시는 분들께서는 아래 경로에서 명령어 참고 바래요
 <br/>
->https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 <br/>
->https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker
+https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker
 <br/>
 쿠버네티스가 Pod Network에 필요한 호스트 파일 시스템에 액세스가 가능하도록 하기 위해서 필요한 설정이예요
 <br/>
