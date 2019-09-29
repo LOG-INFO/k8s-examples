@@ -5,7 +5,7 @@
 <https://www.inflearn.com/course/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EA%B8%B0%EC%B4%88#>
 
 # 7-1. Appendix. Kubernetes Installation - Case1
-![install-case1](./images/install-case1.jpg)
+![install-case1](./images/install-case1.JPG)
 
 ![install-1](./images/install-1.jpg)
 ## 1-1) Install CentOS
