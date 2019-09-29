@@ -7,6 +7,7 @@
 # 7-2. Appendix. Kubernetes Installation - Case 2
 
 ![install-case1](./images/install-case2.JPG)
+<br/>
 윈도우나 맥이 설치되어 있는 Desktop가 1대 있고, 그위에 VirtualBox와 같은 도구를 이용해서 VM을 만드는 경우
 <br/>
 
