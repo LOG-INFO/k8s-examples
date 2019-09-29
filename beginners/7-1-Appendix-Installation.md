@@ -6,6 +6,11 @@
 
 # 7-1. Appendix. Kubernetes Installation - Case1
 ![install-case1](./images/install-case1.JPG)
+<br/>
+남는 Server나 Netebook이 1대 있고, 그 서버 자체를 처음부터 구성하는 경우 그 서버의 CentOS 설치부터 가이드 시작..
+<br/>
+<br/>
+<br/>
 
 ![install-1](./images/install-1.jpg)
 ## 1-1) Install CentOS
@@ -36,8 +41,9 @@
 ``` 
 
 ### 1-1-3) CentOS 설치
-
-USB를 설치할 서버에 꼽고 부팅하면 CentOS 설치단계로 가져요.
+(실습 동영상 화면은 VM설치 화면으로 대체했지만 실제로는 아래와 같이 하시면 되세요)
+<br/>
+USB를 설치할 서버에 꼽고 부팅하면 CentOS 설치단계로 가져요
 <br/>
 안되시는 분은 부팅 순서를 USB가  변경하셔야 됩니다.
 <br/>
