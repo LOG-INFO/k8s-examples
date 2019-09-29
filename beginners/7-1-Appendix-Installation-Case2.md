@@ -6,7 +6,7 @@
 
 # 7-2. Appendix. Kubernetes Installation - Case 2
 
-![install-case1](./images/install-case2.jpg)
+![install-case1](./images/install-case2.JPG)
 
 ![install-1](./images/install-1.jpg)
 ## 1-1) Install CentOS
