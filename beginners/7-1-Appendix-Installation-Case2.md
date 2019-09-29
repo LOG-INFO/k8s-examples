@@ -10,6 +10,9 @@
 <br/>
 윈도우나 맥이 설치되어 있는 Desktop가 1대 있고, 그위에 VirtualBox와 같은 도구를 이용해서 VM을 만드는 경우
 <br/>
+<br/>
+<br/>
+
 
 ![install-1](./images/install-1.jpg)
 ## 1-1) Install CentOS
