@@ -31,22 +31,23 @@
 </p>
 </details>
 
-## 1-2) Install MobaXTerm
+## 1-2) Install Remote Connection Tool
 
 <details><summary>show</summary>
 <p>
 
 ### 1-2-1) 원격접속 툴 MobaXterm 설치
 
-Virt-Manager의 UI 툴을 띄우기 위해서 MobaXterm 원격접속 툴을 사용하셔야 되요
-
+꼭 MobaXterm이 아닌 각자 편한 원격접속 툴을 사용하셔도 되세요.
+<br/>
+아래 예제는 MobaXterm를 설치하고 필요한 Host 등록 예제입니다.
+<br/>
 >https://mobaxterm.mobatek.net/
 
 ```sh
 - [GET MOBAXTERM NOW] 버튼 클릭
 - Free 버전 [Download now]
 - Installer editon 다운로드 및 실행
-- Sessions > SSH > Remote host : 192.168.0.20 > [Bookmark settings] Session name : host-192.168.0.20 > [ok]
 - Sessions > SSH > Remote host : 192.168.0.30 > [Bookmark settings] Session name : master-192.168.0.30 > [ok]
 - Sessions > SSH > Remote host : 192.168.0.31 > [Bookmark settings] Session name : node1-192.168.0.31 > [ok]
 - Sessions > SSH > Remote host : 192.168.0.32 > [Bookmark settings] Session name : node2-192.168.0.32 > [ok]
@@ -64,36 +65,13 @@ Virt-Manager의 UI 툴을 띄우기 위해서 MobaXterm 원격접속 툴을 사�
 
 
 
-### 2-1-1) CentOS 최신버전 다운로드
-Virt-Manager의 Image 파일 기본 경로로 이동
+### 2-1-1) VM 생성 툴 설치 (Virtualbox, VMware) 등
+각자 운영체제에 적합한 VM 생성 툴을 설치하시면 되세요
 
-```sh
-cd /var/lib/libvirt/images
-```
-Minimal ISO 버전 다운로드 
-<br/>
-만약 다운로드 받은 파일 크기가 매우 작다면 해당 경로에 파일이 없는 것이니, 아래 URL에서 [Minimal ISO]를 선택하고 원하는 경로로 변경하세요.
-<br/>
->https://www.centos.org/download/
 
-```sh
-curl -O http://mirror.kakao.com/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso 
-```
 
-파일 크기 확인
-
-```sh
-ls -al 
-```
-
-### 2-1-2) Virt-Manager UI 설정
-UI 실행 명령
-
-```sh
-virt-manager
-```
-
-6번 단계에서 `Host divice eno1`는 자신 서버에 물리 Port가 여러게 있을 경우, Port 갯수 만큼 생성되는데 선택한 Port로 해당 VM의 트래픽이 나가기 때문에 여러 VM을 만들때 분산해서 지정하면 좋아요
+### 2-1-2) VM 스펙 설정
+아래 내용은 virt-manager 설정이지만 내용 참고해서 각자 툴에 VM 설정
 
 ```sh
 1. 파일 > 새 가상 머신
@@ -331,9 +309,9 @@ shutdown now
 
 ### 4-1-2) VM 복사
 
-Physical Server(192.168.0.30)에서 virt-clone 명령을 통해 VM을 복제하세요.
+각자 사용하는 VM 가상화 툴을의 복제 명령을 통해 VM을 복제하세요.
 <br/>
-Node1 VM 생성
+아래 내용은 virt-manager 사례
 
 ```sh
 virt-clone -o k8s-master -n k8s-node1 --auto-clone
