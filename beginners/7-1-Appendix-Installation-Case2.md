@@ -4,7 +4,7 @@
 바로가기 : 
 <https://www.inflearn.com/course/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EA%B8%B0%EC%B4%88#>
 
-# 7-2. Appendix. Kubernetes Installation - Case 2
+# 7-1. Appendix. Kubernetes Installation - Case 2
 
 ![install-case1](./images/install-case2.JPG)
 <br/>
@@ -28,56 +28,10 @@
 <br/>
 >https://www.centos.org/download/
 
-
-### 1-1-2) Booting USB 만들기
-
-아래 경로로 들어가면 중간 정도에 다운로드 버튼 있어요. 
-<br/>
->https://rufus.ie/ko_KR.html
-<br/>
-다운로드 후 실행
-
-```sh 
-- 장치 : USB 선택
-- 부트 선택 : 디스크 또는 ISO 이미지 [선택] 클릭 후 다운받은 파일 지정
-- [시작]
-``` 
-
-### 1-1-3) CentOS 설치
-
-USB를 설치할 서버에 꼽고 부팅하면 CentOS 설치단계로 가져요.
-<br/>
-안되시는 분은 부팅 순서를 USB가  변경하셔야 됩니다.
-<br/>
-4번 단계에서 `8.8.8.8`는 Google DNS입니다. 원하는 DNS 쓰셔도 되요.
-
-```sh
-1. Test this media & install CentOS 7
-2. Language : 한국어 
-3. Disk 설정 [시스템 > 설치 대상]
-   - [기타 저장소 옵션 > 파티션 설정] 파티션을 설정합니다. [체크] 후 [완료]
-   - 기존에 파티션이 설정되어 있으면 하나씩 선택해서 [-] 버튼으로 삭제
-   - 새로운 CentOS 설치 > 여기를 클릭하여 자동으로 생성합니다. [클릭]
-   - /home [클릭] 후 용량 30 GiB로 변경 [설정 업데이트 클릭]
-   - / [클릭] 후 /home에서 뺀 GiB 만큼 추가해서 GiB 수정 후 [설정 업데이트 클릭]
-   - [완료], [변경 사항 적용]
-4. 네트워크 설정 [시스템 > 네트워크 및 호스트명 설정]
-   - 호스트 이름: physical-host [적용]
-   - 이더넷 [켬], [설정], [IPv4 설정] 탭
-   - 방식: 수동으로 선택, 
-   - [Add] -> 주소: 192.168.0.20, 넷마스크 : 255.255.255.0, 게이트웨이: 192.168.0.1, DNS 서버 : 8.8.8.8 [저장][완료]
-5. 설치시작
-6. [설정 > 사용자 설정] ROOT 암호 설정 
-7. 설치 완료 후 [재부팅]
-   (재부팅 시에는 USB 빼는거 잊지 마세요)
-```
-
 </p>
 </details>
 
-
-## 1-2) Install Virt-Manager
-
+## 1-2) Install MobaXTerm
 
 <details><summary>show</summary>
 <p>
@@ -98,54 +52,8 @@ Virt-Manager의 UI 툴을 띄우기 위해서 MobaXterm 원격접속 툴을 사�
 - Sessions > SSH > Remote host : 192.168.0.32 > [Bookmark settings] Session name : node2-192.168.0.32 > [ok]
 ```
 
-
-### 1-2-2) Virt-Manager 설치
-
-아래 경로에 Virt-Manager 설치에 대해서 잘 정리되어 있어요.
-<br/>
->https://www.linuxtechi.com/install-kvm-hypervisor-on-centos-7-and-rhel-7/
-<br/>
-
-현재 서버가 가상화 가능한 서버인지 확인
-```sh
-grep -E '(vmx|svm)' /proc/cpuinfo
-```
-실행 결과에 vmx 나 svm이 나오면 됩니다.
-
-<br/>
-설치 후 yum update는 기본
-
-```sh
-yum update 
-```
-
-virt-manager 패키지 
-```sh
-yum install qemu-kvm qemu-img virt-manager libvirt libvirt-python libvirt-client virt-install virt-viewer bridge-utils   
-```
-
-virt-manager 구동
-```sh
-systemctl start libvirtd && systemctl enable libvirtd
-```
-
-virt-manager UI를 띄우기 위해 X Window System 및 폰트 설치
-```sh
-yum groupinstall "X Window System" "Fonts"
-```
-
-virt-manager 실행 
-<br/>
-만약 UI가 뜨지 않으면 재접속 후 다시 실행
-```sh
-virt-manager
-```
-
 </p>
 </details>
-
-<br/>
-<br/>
 
 ![install-2](./images/install-2.jpg)
 
