@@ -509,8 +509,9 @@ systemctl enable --now kubelet
 kubeadm init 명령관련 해서 상세 내용이 궁금하신 분은 아래 싸이트 참고하세요.
 >https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/
 <br/>
-`pod-network-cidr` 를 설정하면 Pod의 IP가 자동으로 생성될때 해당 network으로 생성되요
-
+`pod-network-cidr` 를 설정하면 Pod의 IP가 자동으로 생성될때 해당 대역으로 생성되요
+<br/>
+`service-cidr` 를 설정하면 Service의 IP가 자동으로 생성될때 해당 대역으로 생성되요 `Default: "10.96.0.0/12"`
 
 ```sh
 kubeadm init --pod-network-cidr=20.96.0.0/12
