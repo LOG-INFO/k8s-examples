@@ -88,6 +88,7 @@ spec:
 
 ### PersistentVolumeClaim
 ```yaml
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: pvc-04
