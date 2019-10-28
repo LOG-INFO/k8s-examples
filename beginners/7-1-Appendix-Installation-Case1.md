@@ -626,7 +626,7 @@ sed s/192.168.0.0\\/16/20.96.0.0\\/12/g -i calico.yaml
 kubectl apply -f calico.yaml
 ```
 
-calico와 coredns 관련 Pod의 Status가 Running인지 확인 
+calico와 coredns 관련 Pod의 Status가 Running인지 확인 (2분정도 소요)
 
 ```sh
 kubectl get pods --all-namespaces
@@ -645,7 +645,7 @@ kubectl get pods --all-namespaces
 
 해당 설정은 교육목적으로 권한 설정을 모두 해제하는 방법이기 때문에 프로젝트에서 사용하실때는 이점 유의바래요
 <br/>
->https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
+>https://github.com/kubernetes/dashboard
 
 
 ```sh
@@ -659,7 +659,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/
 아래 명령을 통해 수정 모드로 들어가서
 
 ```sh
-kubectl -n kubernetes-dashboard edit deployments.apps kubernetes-dashboard
+kubectl -n kube-system edit deployments.apps kubernetes-dashboard
 ```
 
  아래 내용 찾아서 `--enable-skip-login` 추가 
@@ -678,7 +678,7 @@ Dashboard의 Admin권한 부여
 
 ```sh
 cat <<EOF | kubectl create -f -
-apiVersion: rbac.authorization.k8s.io/v1
+apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
   name: kubernetes-dashboard
@@ -691,7 +691,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: kubernetes-dashboard
-  namespace: kubernetes-dashboard
+  namespace: kube-system
 EOF
 ```
 
