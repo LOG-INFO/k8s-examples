@@ -421,7 +421,7 @@ shutdown now
 
 ### 4-1-2) VM 복사
 
-Physical Server(192.168.0.30)에서 virt-clone 명령을 통해 VM을 복제하세요.
+Physical Server(192.168.0.20)에서 virt-clone 명령을 통해 VM을 복제하세요.
 <br/>
 Node1 VM 생성
 
