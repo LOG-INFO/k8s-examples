@@ -423,10 +423,14 @@ shutdown now
 
 Physical Server(192.168.0.20)에서 virt-clone 명령을 통해 VM을 복제하세요.
 <br/>
-Node1 VM 생성
+Node1과 Node2 VM 생성
 
 ```sh
 virt-clone -o k8s-master -n k8s-node1 --auto-clone
+```
+
+```sh
+virt-clone -o k8s-master -n k8s-node2 --auto-clone
 ```
 
 </p>
@@ -439,7 +443,7 @@ virt-clone -o k8s-master -n k8s-node1 --auto-clone
 
 ### 4-2-1) Network 변경하기
 
-Virt-Manager UI에서 k8s-node1을 실행시킵니다
+Virt-Manager UI에서 k8s-node1을 실행시킵니다.
 <br/>
 Host의 Ip Address를 변경하기 위해 아래 명령어로 설정을 열고
 
@@ -469,7 +473,7 @@ systemctl restart network
 hostnamectl set-hostname k8s-node1
 ```
 
-이와 같은 방식으로 k8s-node2(192.168.0.32) 도 새 VM을 만듭니다.
+이와 같은 방식으로 k8s-node2(192.168.0.32)도 설정합니다.
 
 </p>
 </details>
@@ -485,6 +489,9 @@ hostnamectl set-hostname k8s-node1
 <p>
 
 ### 5-1-1) 도커 및 쿠버네티스 실행
+
+Virt-Manager UI에서 k8s-master을 실행시킵니다.
+<br/>
 도커 실행
 
 ```sh
@@ -507,7 +514,6 @@ docker run hello-world
 systemctl enable --now kubelet
 ```
 
-이후 k8s-node2 반복하여 실행 후 Master도 모두 실행상태로 유지
 
 ### 5-1-2) 쿠버네티스 초기화 명령 실행
 
