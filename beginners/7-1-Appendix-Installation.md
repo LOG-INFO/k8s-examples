@@ -517,7 +517,7 @@ kubeadm init 명령관련 해서 상세 내용이 궁금하신 분은 아래 싸
 
 
 ```sh
-kubeadm init --pod-network-cidr=20.96.0.0/12
+kubeadm init --kubernetes-version=1.15.0 --pod-network-cidr=20.96.0.0/12
 ```
 
 실행 후 `[Your Kubernetes master has initialized successfully!]` 문구를 확인하고 아래 내용 복사해서 별도로 저장해 둡니다. 
@@ -632,13 +632,13 @@ kubectl get pods --all-namespaces
 
 ### 6-2-1) Dashboard 설치 
 
-v2.0.0-beta4 버전을 설치합니다. 해당 설정은 교육목적으로 권한 설정을 모두 해제하는 방법이기 때문에 프로젝트에서 사용하실때는 이점 유의바래요
+해당 설정은 교육목적으로 권한 설정을 모두 해제하는 방법이기 때문에 프로젝트에서 사용하실때는 이점 유의바래요
 <br/>
 >https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
 
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta4/aio/deploy/recommended.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
 ```
 
 ### 6-2-2) 권한 해지 설정 
@@ -663,33 +663,27 @@ kubectl -n kubernetes-dashboard edit deployments.apps kubernetes-dashboard
 -------------------------------
 ```
 
-Dashboard의 ClusterRole 내용을 지우고
-
-```sh
-cat <<EOF | kubectl delete -f -
-kind: ClusterRole
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: kubernetes-dashboard
-EOF	
-```
-
-모든 권한으로 리소스에 접근할 수 있도록 ClusterRole 새로 추가
+Dashboard의 Admin권한 부여
 
 ```sh
 cat <<EOF | kubectl create -f -
-kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
 metadata:
+  name: kubernetes-dashboard
   labels:
     k8s-app: kubernetes-dashboard
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
   name: kubernetes-dashboard
-rules:
-  - apiGroups: ["*"]
-    resources: ["*"]
-    verbs: ["*"]
-EOF	
+  namespace: kubernetes-dashboard
+EOF
 ```
+
 
 
 ### 6-2-3) 백그라운드로 proxy 띄우기	
