@@ -422,7 +422,7 @@ shutdown now
 ### 4-1-2) VM 복사
 
 Physical Server(192.168.0.20)에서 virt-clone 명령을 통해 VM을 복제하세요.
-<br/> 
+<br/>
 Node1 VM 생성
 
 ```sh
@@ -436,9 +436,11 @@ virt-clone -o k8s-master -n k8s-node1 --auto-clone
 
 <details><summary>show</summary>
 <p>
+
 ### 4-2-1) Network 변경하기
+
 Virt-Manager UI에서 k8s-node1을 실행시킵니다
-</br>
+<br/>
 Host의 Ip Address를 변경하기 위해 아래 명령어로 설정을 열고
 
 ```sh
