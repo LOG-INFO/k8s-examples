@@ -392,7 +392,7 @@ mkdir -p /etc/systemd/system/docker.service.d
 ### 3-2-2) Kubernetes 설치
 
 ```sh
-yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+yum install -y --disableexcludes=kubernetes kubeadm-1.15.5-0.x86_64 kubectl-1.15.5-0.x86_64 kubelet-1.15.5-0.x86_64
 ```
 
 </p>
@@ -528,7 +528,7 @@ kubeadm init 명령관련 해서 상세 내용이 궁금하신 분은 아래 싸
 
 
 ```sh
-kubeadm init --kubernetes-version=1.15.0 --pod-network-cidr=20.96.0.0/12
+kubeadm init --pod-network-cidr=20.96.0.0/12
 ```
 
 실행 후 `[Your Kubernetes master has initialized successfully!]` 문구를 확인하고 아래 내용 복사해서 별도로 저장해 둡니다. 
