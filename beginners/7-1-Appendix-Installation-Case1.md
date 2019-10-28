@@ -437,6 +437,8 @@ virt-clone -o k8s-master -n k8s-node1 --auto-clone
 <details><summary>show</summary>
 <p>
 ### 4-2-1) Network 변경하기
+Virt-Manager UI에서 k8s-node1을 실행시킵니다
+</br>
 Host의 Ip Address를 변경하기 위해 아래 명령어로 설정을 열고
 
 ```sh
@@ -503,6 +505,7 @@ docker run hello-world
 systemctl enable --now kubelet
 ```
 
+이후 k8s-node2 반복하여 실행 후 Master도 모두 실행상태로 유지
 
 ### 5-1-2) 쿠버네티스 초기화 명령 실행
 
