@@ -490,7 +490,7 @@ hostnamectl set-hostname k8s-node1
 
 ### 5-1-1) 도커 및 쿠버네티스 실행
 
-Virt-Manager UI에서 k8s-master을 실행시킵니다.
+Virt-Manager UI에서 k8s-master을 실행 시킨 후 아래 작업 진행
 <br/>
 도커 실행
 
