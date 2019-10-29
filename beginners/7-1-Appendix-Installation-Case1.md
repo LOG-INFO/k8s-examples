@@ -21,9 +21,9 @@
 
 ### 1-1-1) CentOS 다운로드
 
-아래 경로에서 Minimal ISO 로 들어가서 원하는 경로에서 파일 다운로드
+아래 경로로 들어가서 원하는 경로에서 파일 다운로드
 <br/>
->https://www.centos.org/download/
+>http://isoredirect.centos.org/altarch/7/isos/i386/CentOS-7-i386-Minimal-1908.iso
 
 
 ### 1-1-2) Booting USB 만들기

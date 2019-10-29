@@ -15,27 +15,44 @@
 
 
 ![install-1](./images/install-1.jpg)
-## 1-1) Install CentOS
+
+
+## 1-1) Install Virtualbox
+
+### 1-1-1) virtualbox 다운로드 및 설치
+
+[윈도우10 버전으로 진행] 아래 경로에서 [Windows hosts] 클릭 하여 다운로드 후 설치 (별다른 변경없이 Next만 함)
+<br/>
+>https://www.virtualbox.org/wiki/Downloads
+
+<br/>
+
+Mac 사용자 참고 URL
+<br/>
+>https://www.virtualbox.org/wiki/Mac%20OS%20X%20build%20instructions
+
+
+## 1-2) Install CentOS
 
 <details><summary>show</summary>
 <p>
    
 
-### 1-1-1) CentOS 다운로드
+### 1-2-1) CentOS 다운로드
 
-아래 경로에서 Minimal ISO 로 들어가서 원하는 경로에서 파일 다운로드
+아래 경로로 들어가서 원하는 경로에서 파일 다운로드
 <br/>
->https://www.centos.org/download/
+>http://isoredirect.centos.org/altarch/7/isos/i386/CentOS-7-i386-Minimal-1908.iso
 
 </p>
 </details>
 
-## 1-2) Install Remote Connection Tool
+## 1-3) Install Remote Connection Tool
 
 <details><summary>show</summary>
 <p>
 
-### 1-2-1) 원격접속 툴 MobaXterm 설치
+### 1-3-1) 원격접속 툴 MobaXterm 설치
 
 꼭 MobaXterm이 아닌 각자 편한 원격접속 툴을 사용하셔도 되세요.
 <br/>
@@ -64,22 +81,21 @@
 
 
 
-### 2-1-1) VM 생성 툴 설치 (Virtualbox, VMware) 등
-각자 운영체제에 적합한 VM 생성 툴을 설치되어 있어야 합니다.
-
-
-### 2-1-2) VM 스펙 설정
-아래 내용은 virt-manager 설정이지만 내용 참고해서 각자 툴에 VM 설정
+### 2-1-1) VM 스펙 설정
+메모리 및 디스크는 각자 상황에 맞게 참고해서 VM 설정
 
 ```sh
-1. 파일 > 새 가상 머신
-2. [1단계] 로컬 설치 매체(ISO 이미지나 CDROM)선택 
-3. [2단계] ISO 이미지 사용 [검색] 클릭해서 ISO 선택 
-4. [3단계] 메모리(RAM) : 4096 MiB, CPU들 2로 변경 
-5. [4단계] 150 GiB 변경 
-6. [5단계] 이름 : k8s-master, 네트워크 선택을 [호스트 장치 enp2s0:macvtap] 선택 후 소스 모드는 [브릿지]확인
-7. [완료]를 누르고 조금 기다리면 CentOS 설치 화면 나옴
+1. [NAT Network 생성] 파일 > 환경설정 > 네트워크 > +네트워크 이미지 클릭 (NatNetwor 생성) 
+2. [NAT Network 설정] 파일 > 환경설정 > 네트워크 > 설정 버튼 클릭 후 [네트워크 CIDR : 128.0.2.0/24]로 수정
+3. [VM 생성 1단계] 머신 > 새로 만들기 클릭
+4. [VM 생성 1단계] 이름 : k8s-master, 종류: Linux, 버전: Other Linux(32-bit)
+5. [VM 생성 2단계] 메모리 : 2048 MB
+6. [VM 생성 3단계] 하드디스크 : 지금 새 가상 하드 디스크 만들기 (VDI:VirtualBox 디크스 이미지, 동적할당, 100GB)
+7. [VM 생성 후 네트워크 설정] VM 선택 후 설정 버튼 클릭 > 네트워크 > 어댑터 1 탭 > 다음에 연결됨 [NAT 네트워크] 선택 
+8. [VM 생성 후 저장소 설정] 컨트롤러:IDE 하위에 있는 광학드라이브 클릭 > CentOS 이미지 선택 후 확인
+9. 시작
 ```
+
 
 </p>
 </details>
