@@ -710,5 +710,12 @@ nohup kubectl proxy --port=8001 --address=192.168.0.30 --accept-hosts='^*$' >/de
 http://192.168.0.30:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/.
 ```
 
+### 6-2-5) 언어 설정변경
+
+```sh
+Chrome 설정 > 언어 > 언어(한국어) > 원하는 언어를 위로 추가
+```
+
+
 </p>
 </details>
