@@ -707,7 +707,7 @@ nohup kubectl proxy --port=8001 --address=192.168.0.30 --accept-hosts='^*$' >/de
 ### 6-2-4) 접속 URL 
 
 ```sh
-http://192.168.0.30:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/.
+http://192.168.0.30:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/.
 ```
 
 </p>
