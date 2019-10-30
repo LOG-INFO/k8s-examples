@@ -19,6 +19,10 @@
 
 ## 1-1) Install Virtualbox
 
+<details><summary>show</summary>
+<p>
+
+
 ### 1-1-1) virtualbox 다운로드 및 설치
 
 [윈도우10 버전으로 진행] 아래 경로에서 [Windows hosts] 클릭 하여 다운로드 후 설치 (별다른 변경없이 Next만 함)
@@ -32,27 +36,14 @@ Mac 사용자 참고 URL
 >https://www.virtualbox.org/wiki/Mac%20OS%20X%20build%20instructions
 
 
-## 1-2) Install CentOS
-
-<details><summary>show</summary>
-<p>
+### 1-1-2) CentOS Download
    
-
-### 1-2-1) CentOS 다운로드
-
 아래 경로로 들어가서 원하는 경로에서 파일 다운로드
 <br/>
 >http://isoredirect.centos.org/altarch/7/isos/i386/CentOS-7-i386-Minimal-1908.iso
 
-</p>
-</details>
 
-## 1-3) Install Remote Connection Tool
-
-<details><summary>show</summary>
-<p>
-
-### 1-3-1) 원격접속 툴 MobaXterm 설치
+### 1-1-3) 원격접속 툴 MobaXterm 설치
 
 꼭 MobaXterm이 아닌 각자 편한 원격접속 툴을 사용하셔도 되세요.
 <br/>
