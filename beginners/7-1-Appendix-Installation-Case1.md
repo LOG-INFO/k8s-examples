@@ -164,7 +164,7 @@ Minimal ISO 버전 다운로드
 <br/>
 만약 다운로드 받은 파일 크기가 매우 작다면 해당 경로에 파일이 없는 것이니, 아래 URL에서 [Minimal ISO]를 선택하고 원하는 경로로 변경하세요.
 <br/>
->https://www.centos.org/download/
+>http://isoredirect.centos.org/altarch/7/isos/i386/CentOS-7-i386-Minimal-1908.iso
 
 ```sh
 curl -O http://mirror.kakao.com/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso 
