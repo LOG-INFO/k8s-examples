@@ -14,7 +14,7 @@
 <br/>
 
 
-![install-7](./images/install-7.jpg)
+![install-8](./images/install-8.jpg)
 
 
 ## 1-1) Install Virtualbox
