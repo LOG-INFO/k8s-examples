@@ -316,12 +316,11 @@ shutdown now
 
 ### 4-1-2) VM 복사
 
-각자 사용하는 VM 가상화 툴을의 복제 명령을 통해 VM을 복제하세요.
-<br/>
-아래 내용은 virt-manager 사례
+VirtualBox UI를 통해 Master 선택 후 마우스 우클릭을 해서 [복제] 버튼 클릭
 
 ```sh
-virt-clone -o k8s-master -n k8s-node1 --auto-clone
+1. 이름 : k8s-node1, MAC 주소정책 : 모든 네트워크 어댑터의 새 MAC 주소 생성
+2. 복제방식 : 완전한 복제
 ```
 
 </p>
@@ -331,7 +330,11 @@ virt-clone -o k8s-master -n k8s-node1 --auto-clone
 
 <details><summary>show</summary>
 <p>
+   
 ### 4-2-1) Network 변경하기
+
+VirtualBox UI에서 k8s-node1을 시작 시키면 뜨는 Console 창을 통해 아래 명령어 입력
+<br/>
 Host의 Ip Address를 변경하기 위해 아래 명령어로 설정을 열고
 
 ```sh
@@ -360,7 +363,7 @@ systemctl restart network
 hostnamectl set-hostname k8s-node1
 ```
 
-이와 같은 방식으로 k8s-node2(192.168.0.32) 도 새 VM을 만듭니다.
+이와 같은 방식으로 k8s-node2(192.168.0.32) 도 설정합니다.
 
 </p>
 </details>
@@ -406,6 +409,8 @@ kubeadm init 명령관련 해서 상세 내용이 궁금하신 분은 아래 싸
 <br/>
 `pod-network-cidr` 를 설정하면 Pod의 IP가 자동으로 생성될때 해당 network으로 생성되요
 
+<br/>
+`service-cidr` 를 설정하면 Service의 IP가 자동으로 생성될때 해당 대역으로 생성되요 `Default: 10.96.0.0/12`
 
 ```sh
 kubeadm init --pod-network-cidr=20.96.0.0/12
@@ -523,13 +528,13 @@ kubectl get pods --all-namespaces
 
 ### 6-2-1) Dashboard 설치 
 
-v2.0.0-beta4 버전을 설치합니다. 해당 설정은 교육목적으로 권한 설정을 모두 해제하는 방법이기 때문에 프로젝트에서 사용하실때는 이점 유의바래요
+해당 설정은 교육목적으로 권한 설정을 모두 해제하는 방법이기 때문에 프로젝트에서 사용하실때는 이점 유의바래요
 <br/>
->https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
+>https://github.com/kubernetes/dashboard
 
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta4/aio/deploy/recommended.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
 ```
 
 ### 6-2-2) 권한 해지 설정 
@@ -539,7 +544,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-b
 아래 명령을 통해 수정 모드로 들어가서
 
 ```sh
-kubectl -n kubernetes-dashboard edit deployments.apps kubernetes-dashboard
+kubectl -n kube-system edit deployments.apps kubernetes-dashboard
 ```
 
  아래 내용 찾아서 `--enable-skip-login` 추가 
@@ -554,32 +559,25 @@ kubectl -n kubernetes-dashboard edit deployments.apps kubernetes-dashboard
 -------------------------------
 ```
 
-Dashboard의 ClusterRole 내용을 지우고
-
-```sh
-cat <<EOF | kubectl delete -f -
-kind: ClusterRole
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: kubernetes-dashboard
-EOF	
-```
-
-모든 권한으로 리소스에 접근할 수 있도록 ClusterRole 새로 추가
+Dashboard의 Admin권한 부여
 
 ```sh
 cat <<EOF | kubectl create -f -
-kind: ClusterRole
-apiVersion: rbac.authorization.k8s.io/v1
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
 metadata:
+  name: kubernetes-dashboard
   labels:
     k8s-app: kubernetes-dashboard
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
   name: kubernetes-dashboard
-rules:
-  - apiGroups: ["*"]
-    resources: ["*"]
-    verbs: ["*"]
-EOF	
+  namespace: kube-system
+EOF
 ```
 
 
@@ -593,7 +591,13 @@ nohup kubectl proxy --port=8001 --address=192.168.0.30 --accept-hosts='^*$' >/de
 ### 6-2-4) 접속 URL 
 
 ```sh
-http://192.168.0.30:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/.
+http://192.168.0.30:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/.
+```
+
+### 6-2-5) 언어 설정변경
+
+```sh
+Chrome 설정 > 언어 > 언어(한국어) > 원하는 언어를 위로 추가
 ```
 
 </p>
