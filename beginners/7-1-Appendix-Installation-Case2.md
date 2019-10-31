@@ -63,6 +63,9 @@ Mac 사용자 참고 URL
 </p>
 </details>
 
+<br/>
+<br/>
+
 ![install-2](./images/install-2.jpg)
 
 ## 2-1) Setting VM
