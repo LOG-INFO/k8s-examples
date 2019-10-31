@@ -287,7 +287,7 @@ mkdir -p /etc/systemd/system/docker.service.d
 ### 3-2-2) Kubernetes 설치
 
 ```sh
-yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+yum install -y --disableexcludes=kubernetes kubeadm-1.15.5-0.x86_64 kubectl-1.15.5-0.x86_64 kubelet-1.15.5-0.x86_64
 ```
 
 </p>
@@ -322,6 +322,9 @@ VirtualBox UI를 통해 Master 선택 후 마우스 우클릭을 해서 [복제]
 1. 이름 : k8s-node1, MAC 주소정책 : 모든 네트워크 어댑터의 새 MAC 주소 생성
 2. 복제방식 : 완전한 복제
 ```
+
+node2도 반복
+
 
 </p>
 </details>
