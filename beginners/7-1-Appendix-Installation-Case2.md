@@ -40,7 +40,7 @@ Mac 사용자 참고 URL
    
 아래 경로로 들어가서 원하는 경로에서 파일 다운로드
 <br/>
->http://isoredirect.centos.org/altarch/7/isos/i386/CentOS-7-i386-Minimal-1908.iso
+>http://isoredirect.centos.org/centos/7/isos/x86_64/
 
 
 ### 1-1-3) 원격접속 툴 MobaXterm 설치
