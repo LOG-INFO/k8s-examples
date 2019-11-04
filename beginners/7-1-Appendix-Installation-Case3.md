@@ -106,11 +106,12 @@ gcloud components install kubectl
 <br/>
 GCP > Kubernetes Engine > Clusters > k8s-cluster 리스트에 [Connect] 버튼 클릭하여 나오는 팝업에서 아래 내용 복사
 <br/>
+
 `gcloud container clusters get-credentials k8s-cluster --zone asia-east2-c --project turnkey-conduit-258023`
 
 <br/>
 
-Local GCP Shell에 붙여 놓기를 한 후 아래 명령어로 확인
+Local GCP Shell에 붙여 놓기를 한 후 아래 Node 조회 명령어로 
 
 ```sh
 kubectl get nodes
