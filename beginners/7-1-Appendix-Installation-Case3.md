@@ -69,10 +69,14 @@ Kubernetes Engine > Clusters > [CREATE CLUSTER] 클릭
 ### 2-1-2) Local PC에 GCP 연결
 아래 URL에서 Windows용 GCP SDK 설치
 <br/>
+
 >https://cloud.google.com/sdk/docs/quickstart-windows
+
 <br/>
+
 다른 운영체제에서는 아래 내용 참조
 <br/>
+
 >https://cloud.google.com/sdk
 
 ```sh
@@ -98,6 +102,20 @@ gcloud components update
 ```sh
 gcloud components install kubectl
 ```
+
+<br/>
+GCP > Kubernetes Engine > Clusters > k8s-cluster 리스트에 [Connect] 버튼 클릭하여 나오는 팝업에서 아래 내용 복사
+<br/>
+`gcloud container clusters get-credentials k8s-cluster --zone asia-east2-c --project turnkey-conduit-258023`
+
+<br/>
+
+Local GCP Shell에 붙여 놓기를 한 후 아래 명령어로 확인
+
+```sh
+kubectl get nodes
+```
+
 
 
 </p>
