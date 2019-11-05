@@ -6,7 +6,7 @@
 
 # 7-1. Appendix. Kubernetes Installation - Case 3
 
-![install-case1](./images/install-case3.jpg)
+![install-case3](./images/install-case3-n.jpg)
 <br/>
 구글 클라우드 플랫폼을 이용해서 VM을 만드는 경우
 <br/>
@@ -14,10 +14,10 @@
 <br/>
 
 
-![install-8](./images/install-8.jpg)
+![install-10](./images/install-10.jpg)
 
 
-## 1-1) GCP Join
+## 1-1) Join GCP
 
 <details><summary>show</summary>
 <p>
@@ -42,9 +42,10 @@
 <br/>
 <br/>
 
-![install-2](./images/install-2.jpg)
+![install-11](./images/install-11.jpg)
 
-## 2-1) Setting Cluster
+
+## 2-1) Create Cluster
 
 <details><summary>show</summary>
 <p>
@@ -65,8 +66,18 @@ Kubernetes Engine > Clusters > [CREATE CLUSTER] 클릭
 7. [Create] 클릭
 ```
 
+</p>
+</details>
 
-### 2-1-2) Local PC에 GCP 연결
+![install-12](./images/install-12.jpg)
+
+## 3-1) Connect GCP
+
+<details><summary>show</summary>
+<p>
+ 
+ 
+### 3-1-1) Install SDK 
 아래 URL에서 Windows용 GCP SDK 설치
 <br/>
 
@@ -84,6 +95,11 @@ Kubernetes Engine > Clusters > [CREATE CLUSTER] 클릭
 2. Next > Next 를 통해 설치 후 마지막에 4가지 체크항목 모두 선택 후 [Finish]
 ```
 <br/>
+
+
+## 3-2) Setting SDK Shell
+
+### 3-2-1) Install SDK 
 바탕화면에 설치된 [Google Cloud SDK Shell] 실행하면 아래 내용을 물어봅니다.
 
 ```sh
@@ -93,7 +109,9 @@ Kubernetes Engine > Clusters > [CREATE CLUSTER] 클릭
 ```
 
 <br/>
-gcloud 업그레이드 및 kubectl 설치
+
+
+### 3-2-2) gcloud 업그레이드 및 kubectl 설치
 
 ```sh
 gcloud components update
@@ -126,6 +144,7 @@ kubectl get nodes
 <br/>
 
 
+![install-13](./images/install-13.jpg)
 
 ## 4-1) Dashboard
 
