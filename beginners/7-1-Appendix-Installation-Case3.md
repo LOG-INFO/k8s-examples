@@ -166,16 +166,18 @@ kubectl -n kube-system edit deployments.apps kubernetes-dashboard
 -------------------------------
 ```
 
-Dashboard의 Admin권한 부여
+Dashboard의 Admin권한 부여 파일 만들기
 
 ```sh
 echo apiVersion: rbac.authorization.k8s.io/v1beta1>> d-role.yaml&& echo kind: ClusterRoleBinding>> d-role.yaml&& echo metadata:>> d-role.yaml&& echo   name: kubernetes-dashboard>> d-role.yaml&& echo   labels:>> d-role.yaml&& echo     k8s-app: kubernetes-dashboard>> d-role.yaml&& echo roleRef:>> d-role.yaml&& echo   apiGroup: rbac.authorization.k8s.io>> d-role.yaml&& echo   kind: ClusterRole>> d-role.yaml&& echo   name: cluster-admin>> d-role.yaml&& echo subjects:>> d-role.yaml&& echo - kind: ServiceAccount>> d-role.yaml&& echo   name: kubernetes-dashboard>> d-role.yaml&& echo   namespace: kube-system>> d-role.yaml
 ```
 
+적용하기
+```sh
+kubectl apply -f d-role.yaml
+```
 
-
-### 4-1-3) 백그라운드로 proxy 띄우기	
-`--address`에 자신의 Host IP 입력 
+### 4-1-3) proxy 띄우기	
 
 ```sh
 kubectl proxy
