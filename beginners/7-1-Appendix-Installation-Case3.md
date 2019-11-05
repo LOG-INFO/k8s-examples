@@ -125,6 +125,70 @@ kubectl get nodes
 <br/>
 <br/>
 
-![install-3](./images/install-3.jpg)
+
+
+## 4-1) Dashboard
+
+<details><summary>show</summary>
+<p>
+
+### 4-1-1) Dashboard 설치 
+
+해당 설정은 교육목적으로 권한 설정을 모두 해제하는 방법이기 때문에 프로젝트에서 사용하실때는 이점 유의바래요
+<br/>
+>https://github.com/kubernetes/dashboard
+
+
+```sh
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+```
+
+
+### 4-1-2) 권한 해지 설정 
+
+접속시 인증 Skip 설정
+<br/>
+아래 명령을 통해 수정 모드로 들어가서
+
+```sh
+kubectl -n kube-system edit deployments.apps kubernetes-dashboard
+```
+
+ 아래 내용 찾아서 `--enable-skip-login` 추가 
+
+```sh
+-------------------------------
+    spec:
+      containers:
+      - args:
+        - --auto-generate-certificates
+        - --enable-skip-login
+-------------------------------
+```
+
+Dashboard의 Admin권한 부여
+
+```sh
+echo apiVersion: rbac.authorization.k8s.io/v1beta1>> d-role.yaml&& echo kind: ClusterRoleBinding>> d-role.yaml&& echo metadata:>> d-role.yaml&& echo   name: kubernetes-dashboard>> d-role.yaml&& echo   labels:>> d-role.yaml&& echo     k8s-app: kubernetes-dashboard>> d-role.yaml&& echo roleRef:>> d-role.yaml&& echo   apiGroup: rbac.authorization.k8s.io>> d-role.yaml&& echo   kind: ClusterRole>> d-role.yaml&& echo   name: cluster-admin>> d-role.yaml&& echo subjects:>> d-role.yaml&& echo - kind: ServiceAccount>> d-role.yaml&& echo   name: kubernetes-dashboard>> d-role.yaml&& echo   namespace: kube-system>> d-role.yaml
+```
+
+
+
+### 4-1-3) 백그라운드로 proxy 띄우기	
+`--address`에 자신의 Host IP 입력 
+
+```sh
+kubectl proxy
+```
+
+### 4-1-4) 접속 URL 
+
+```sh
+http://127.0.0.1:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/.
+```
+
+
+</p>
+</details>
 
 
