@@ -36,6 +36,9 @@
 2) Terms of Service : 체크 후 [CONTINUE]
 3) 이름 및 주소 확인 후 Payment method 입력
 ```
+
+자신의 신용카드 번호를 입력하지만 크레딧을 다 소모하거나 12개월이 지나도 자동으로 결재가 되진 않습니다.
+
 </p>
 </details>
 
