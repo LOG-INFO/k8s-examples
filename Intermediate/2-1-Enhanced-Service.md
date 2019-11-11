@@ -191,6 +191,10 @@ subsets:
    - port: 8080
 ```
 
+```sh
+curl endpoint2:8080/hostname
+```
+
 ## 2-3) Endpoint3
 
 
