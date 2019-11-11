@@ -246,8 +246,14 @@ metadata:
  name: externalname1
 spec:
  type: ExternalName
- externalName: pod-a.headless1
+ externalName: pod-a.headless1.default.svc.cluster.local
 ```
+
+```sh
+nslookup externalname1
+curl externalname1:8080/hostname
+```
+
 
 ### Service
 ```yaml
@@ -261,9 +267,7 @@ spec:
 ```
 
 ```sh
-nslookup externalname1
 nslookup externalname2
-curl externalname2:8080/hostname
 curl -O externalname2/taemin77/k8s-examples/blob/master/beginners/5-1-Object-Pod-Practice.md
 ```
 
