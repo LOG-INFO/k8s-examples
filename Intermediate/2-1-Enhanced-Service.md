@@ -34,7 +34,7 @@ metadata:
 spec:
   containers:
   - name: container
-    image: tmkube/app
+    image: kubetm/app
 ```
 
 ### Request Pod
@@ -46,7 +46,7 @@ metadata:
 spec:
   containers:
   - name: container
-    image: tmkube/init
+    image: kubetm/init
 ```
 
 nslookup
@@ -95,7 +95,7 @@ spec:
   subdomain: headless1
   containers:
   - name: container
-    image: tmkube/app
+    image: kubetm/app
 ```
 
 Nslookup
@@ -144,7 +144,7 @@ metadata:
 spec:
   containers:
   - name: container
-    image: tmkube/app
+    image: kubetm/app
 ```
 
 
@@ -175,7 +175,7 @@ metadata:
 spec:
   containers:
   - name: container
-    image: tmkube/app
+    image: kubetm/app
 ```
 
 ### Endpoint
