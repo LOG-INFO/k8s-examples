@@ -263,7 +263,7 @@ metadata:
  name: externalname2
 spec:
  type: ExternalName
- externalName: www.github.com
+ externalName: github.github.io
 ```
 
 ```sh
