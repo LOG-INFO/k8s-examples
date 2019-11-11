@@ -4,7 +4,7 @@
 바로가기 : 
 https://www.inflearn.com/course/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EA%B8%B0%EC%B4%88#
 
-# 2-1. Enhance-Pod (Practice)
+# 2-1. Service (Practice)
 
 
 ## 1-1) ClusterIp
