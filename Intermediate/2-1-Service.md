@@ -245,12 +245,6 @@ spec:
  externalName: pod-a.headless1
 ```
 
-```sh
-nslookup externalname1
-curl externalname1:8080/hostname
-```
-
-
 ### Service
 ```yaml
 apiVersion: v1
@@ -263,7 +257,8 @@ spec:
 ```
 
 ```sh
-nslookup externalname2
+curl externalname1:8080/hostname
 curl -O externalname2/taemin77/k8s-examples/blob/master/beginners/5-1-Object-Pod-Practice.md
 ```
+
 
