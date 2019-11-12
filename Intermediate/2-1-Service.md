@@ -60,7 +60,7 @@ curl
 
 ```sh
 curl clusterip1/hostname
-curl clusterip1.default.svc.cluster.local:80/hostname
+curl clusterip1.default.svc.cluster.local/hostname
 ```
 
 
