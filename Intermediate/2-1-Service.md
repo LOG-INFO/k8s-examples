@@ -49,6 +49,10 @@ spec:
     image: kubetm/init
 ```
 
+```sh
+kubectl exec request-pod -it /bin/bash
+```
+
 nslookup
 
 ```sh
