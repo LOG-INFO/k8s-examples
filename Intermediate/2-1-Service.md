@@ -52,9 +52,8 @@ spec:
 nslookup
 
 ```sh
-nslookup 172-16-4-158.default.pod.cluster.local
-nslookup clusterip1.default.svc.cluster.local
 nslookup clusterip1
+nslookup clusterip1.default.svc.cluster.local
 ```
 
 curl
@@ -102,12 +101,10 @@ Nslookup
 
 
 ```sh
-nslookup headless1.default.svc.cluster.local
 nslookup headless1
-nslookup pod-a.headless1.default.svc.cluster.local
 nslookup pod-a.headless1
-nslookup pod5.headless1.default.svc.cluster.local
-nslookup pod5.headless1
+nslookup pod-b.headless1
+
 ```
 Curl
 
@@ -246,7 +243,7 @@ metadata:
  name: externalname1
 spec:
  type: ExternalName
- externalName: pod-a.headless1.default.svc.cluster.local
+ externalName: pod-a.headless1
 ```
 
 ```sh
