@@ -243,7 +243,7 @@ curl -O endpoint3/taemin77/k8s-examples/blob/master/beginners/5-1-Object-Pod-Pra
 apiVersion: v1
 kind: Service
 metadata:
- name: externalname2
+ name: externalname1
 spec:
  type: ExternalName
  externalName: github.github.io
