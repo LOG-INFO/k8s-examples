@@ -243,17 +243,6 @@ curl -O endpoint3/taemin77/k8s-examples/blob/master/beginners/5-1-Object-Pod-Pra
 apiVersion: v1
 kind: Service
 metadata:
- name: externalname1
-spec:
- type: ExternalName
- externalName: pod-a.headless1
-```
-
-### Service
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
  name: externalname2
 spec:
  type: ExternalName
@@ -261,7 +250,6 @@ spec:
 ```
 
 ```sh
-curl externalname1:8080/hostname
 curl -O externalname2/taemin77/k8s-examples/blob/master/beginners/5-1-Object-Pod-Practice.md
 ```
 
