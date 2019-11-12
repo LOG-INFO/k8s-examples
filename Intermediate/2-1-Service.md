@@ -109,7 +109,6 @@ nslookup pod-b.headless1
 Curl
 
 ```sh
-curl headless1/hostname
 curl pod-a.headless1:8080/hostname
 curl pod-b.headless1:8080/hostname
 ```
